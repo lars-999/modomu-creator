@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modomu · Creator Leaderboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #faf8f5;
+    --white: #fff;
+    --black: #1a1a1a;
+    --mid: #6b6b6b;
+    --light: #c8c4bc;
+    --accent: #c9a96e;
+    --accent-light: #f5ede0;
+    --border: #e8e4de;
+    --green: #7a9e5f;
+    --green-bg: #f0faf4;
+    --green-border: #c6e0cc;
+    --gold: #c9a96e;
+    --silver: #a0a09a;
+    --bronze: #b87c4a;
+    --sidebar-w: 220px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* SIDEBAR — same as dashboard */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0;
+    z-index: 50; padding: 0 0 24px;
+  }
+  .sidebar-logo {
+    padding: 20px 24px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo img { height: 22px; }
+  .sidebar-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; }
+  .sidebar-creator {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .creator-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--accent-light); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .creator-name { font-size: 13px; font-weight: 500; }
+  .creator-handle { font-size: 11px; color: var(--mid); margin-top: 1px; }
+  .creator-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--green);
+    background: var(--green-bg); border: 1px solid var(--green-border);
+    padding: 3px 8px; border-radius: 20px;
+  }
+  .creator-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); }
+  .sidebar-nav { padding: 16px 12px; flex: 1; }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px;
+    font-size: 13px; color: var(--mid); cursor: pointer;
+    transition: all 0.15s; margin-bottom: 2px; text-decoration: none;
+  }
+  .nav-item:hover { background: var(--cream); color: var(--black); }
+  .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+  .nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+  .nav-section-label {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--light); padding: 12px 12px 6px; font-weight: 500;
+  }
+  .sidebar-footer { padding: 0 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+  .logout-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px;
+    font-size: 13px; color: var(--light); cursor: pointer;
+    transition: all 0.15s; width: 100%; background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .logout-btn:hover { color: #c0503a; background: #fdf1ee; }
+
+  .mobile-toggle {
+    display: none; position: fixed; top: 16px; left: 16px; z-index: 100;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--white); border: 1px solid var(--border);
+    align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px;
+  }
+
+  /* MAIN */
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 40px; min-height: 100vh; }
+
+  .page-header { margin-bottom: 32px; }
+  .page-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 10px;
+  }
+  .page-eyebrow::before { content:''; width:20px; height:1px; background:var(--accent); }
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px; line-height: 1.1; margin-bottom: 6px;
+  }
+  .page-title em { font-style: italic; color: var(--accent); }
+  .page-sub { font-size: 13px; color: var(--mid); }
+
+  /* YOUR RANK BANNER */
+  .your-rank-banner {
+    background: var(--black); border-radius: 14px;
+    padding: 22px 28px; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 20px;
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(10px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .your-rank-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px; color: var(--accent);
+    line-height: 1; flex-shrink: 0;
+  }
+  .your-rank-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+  .your-rank-title { font-size: 16px; font-weight: 500; color: var(--white); }
+  .your-rank-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+  .your-rank-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+  .your-rank-stats { display: flex; gap: 32px; }
+  .rank-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--white); margin-bottom: 3px;
+  }
+  .rank-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+  .your-rank-badge {
+    margin-left: auto; flex-shrink: 0;
+    background: rgba(201,169,110,0.15);
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 8px; padding: 8px 14px;
+    font-size: 12px; color: var(--accent);
+    text-align: center;
+  }
+  .your-rank-badge-top { font-size: 10px; color: rgba(201,169,110,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+
+  /* FILTERS */
+  .filters {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .filter-btn {
+    padding: 7px 16px; border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--white); color: var(--mid);
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active {
+    background: var(--black); color: var(--white);
+    border-color: var(--black);
+  }
+  .filter-spacer { flex: 1; }
+  .search-wrap {
+    position: relative;
+  }
+  .search-wrap input {
+    padding: 7px 14px 7px 32px;
+    border: 1px solid var(--border); border-radius: 20px;
+    background: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 12px; color: var(--black); outline: none;
+    width: 180px; transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.4; }
+
+  /* TOP 3 PODIUM */
+  .podium {
+    display: grid; grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 12px; margin-bottom: 24px;
+    animation: fadeUp 0.4s ease both 0.1s;
+  }
+  .podium-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 20px;
+    text-align: center; position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .podium-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .podium-card.rank-1 {
+    background: var(--black);
+    border-color: var(--gold);
+    padding-top: 32px;
+  }
+  .podium-rank {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 13px;
+    border: 2px solid var(--white);
+  }
+  .rank-1 .podium-rank { background: var(--gold); color: var(--black); }
+  .rank-2 .podium-rank { background: var(--silver); color: var(--white); }
+  .rank-3 .podium-rank { background: var(--bronze); color: var(--white); }
+  .podium-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 20px;
+    margin: 0 auto 12px; border: 2px solid;
+  }
+  .rank-1 .podium-avatar { background: rgba(201,169,110,0.2); border-color: var(--gold); color: var(--gold); }
+  .rank-2 .podium-avatar { background: #f5f5f3; border-color: var(--silver); color: var(--silver); }
+  .rank-3 .podium-avatar { background: #fdf5ef; border-color: var(--bronze); color: var(--bronze); }
+  .podium-handle {
+    font-size: 13px; font-weight: 500; margin-bottom: 4px;
+  }
+  .rank-1 .podium-handle { color: var(--white); }
+  .podium-niche {
+    font-size: 11px; color: var(--mid); margin-bottom: 14px;
+    text-transform: capitalize;
+  }
+  .rank-1 .podium-niche { color: rgba(255,255,255,0.4); }
+  .podium-metric {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px; color: var(--black); margin-bottom: 2px;
+  }
+  .rank-1 .podium-metric { color: var(--gold); }
+  .rank-2 .podium-metric { color: var(--silver); }
+  .rank-3 .podium-metric { color: var(--bronze); }
+  .podium-metric-label { font-size: 10px; color: var(--light); letter-spacing: 0.06em; text-transform: uppercase; }
+  .rank-1 .podium-metric-label { color: rgba(255,255,255,0.3); }
+  .podium-orders {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--mid);
+  }
+  .rank-1 .podium-orders { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+  .podium-crown {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    font-size: 16px;
+  }
+
+  /* LEADERBOARD TABLE */
+  .leaderboard-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    animation: fadeUp 0.4s ease both 0.2s;
+  }
+  .leaderboard-header {
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .leaderboard-title { font-size: 14px; font-weight: 500; }
+  .leaderboard-count { font-size: 12px; color: var(--mid); }
+
+  .lb-table { width: 100%; border-collapse: collapse; }
+  .lb-table th {
+    padding: 10px 18px;
+    text-align: left; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--light); font-weight: 500;
+    background: var(--cream); border-bottom: 1px solid var(--border);
+  }
+  .lb-table th:last-child { text-align: right; }
+  .lb-table td {
+    padding: 13px 18px; font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .lb-table tr:last-child td { border-bottom: none; }
+  .lb-table tr:hover td { background: var(--cream); }
+  .lb-table tr.is-you td { background: var(--accent-light); }
+  .lb-table tr.is-you td:first-child { border-left: 3px solid var(--accent); }
+
+  .lb-rank-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px; color: var(--mid); width: 28px;
+    display: inline-block; text-align: center;
+  }
+  .lb-rank-num.top3 { color: var(--black); }
+
+  .lb-creator { display: flex; align-items: center; gap: 12px; }
+  .lb-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--cream); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 13px;
+    color: var(--mid); flex-shrink: 0;
+  }
+  .lb-avatar.you { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+  .lb-handle { font-size: 13px; font-weight: 500; }
+  .lb-niche { font-size: 11px; color: var(--mid); margin-top: 1px; }
+
+  .lb-followers { font-size: 13px; color: var(--mid); }
+  .lb-orders { font-size: 13px; font-weight: 500; }
+  .lb-revenue {
+    font-size: 13px; font-weight: 500;
+    text-align: right;
+  }
+  .you-tag {
+    display: inline-flex; align-items: center;
+    background: var(--accent); color: var(--black);
+    font-size: 9px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 4px;
+    margin-left: 6px; vertical-align: middle;
+  }
+
+  .trend {
+    display: inline-flex; align-items: center; gap: 2px;
+    font-size: 11px; margin-left: 4px;
+  }
+  .trend-up { color: var(--green); }
+  .trend-down { color: #c0503a; }
+  .trend-same { color: var(--light); }
+
+  /* ANON NOTE */
+  .anon-note {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px;
+    margin-bottom: 20px; font-size: 12px; color: var(--mid);
+    line-height: 1.6;
+  }
+  .anon-note-icon { font-size: 14px; flex-shrink: 0; }
+
+  @media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 20px; padding-top: 60px; }
+    .mobile-toggle { display: flex; }
+    .podium { grid-template-columns: 1fr; }
+    .your-rank-banner { flex-wrap: wrap; }
+    .your-rank-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="sidebar-logo-text" style="display:none">modomu</span>
+  </div>
+  <div class="sidebar-creator">
+    <div class="creator-avatar">P</div>
+    <div class="creator-name">Priya Sharma</div>
+    <div class="creator-handle">@priya.lifestyle</div>
+    <div class="creator-badge">Active Creator</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Menu</div>
+    <a class="nav-item" href="dashboard.html"><span class="nav-icon">▦</span> Dashboard</a>
+    <a class="nav-item" href="dashboard.html#orders"><span class="nav-icon">📦</span> My Orders</a>
+    <a class="nav-item" href="dashboard.html#posts"><span class="nav-icon">📸</span> My Posts</a>
+    <a class="nav-item active" href="#"><span class="nav-icon">🏆</span> Leaderboard</a>
+    <div class="nav-section-label" style="margin-top:8px">Account</div>
+    <a class="nav-item" href="#"><span class="nav-icon">⚙</span> Settings</a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn"><span class="nav-icon">→</span> Sign out</button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="page-header">
+    <div class="page-eyebrow">Community</div>
+    <h1 class="page-title">Creator <em>Leaderboard</em></h1>
+    <p class="page-sub">All handles are anonymised. Only you can see your own name.</p>
+  </div>
+
+  <!-- YOUR RANK BANNER -->
+  <div class="your-rank-banner">
+    <div>
+      <div class="your-rank-label">Your current rank</div>
+      <div class="your-rank-num">#3</div>
+    </div>
+    <div class="your-rank-divider"></div>
+    <div class="your-rank-stats">
+      <div>
+        <div class="rank-stat-num">₹68,420</div>
+        <div class="rank-stat-label">Revenue generated</div>
+      </div>
+      <div>
+        <div class="rank-stat-num">47</div>
+        <div class="rank-stat-label">Total orders</div>
+      </div>
+      <div>
+        <div class="rank-stat-num">₹6,842</div>
+        <div class="rank-stat-label">Commission earned</div>
+      </div>
+    </div>
+    <div class="your-rank-badge">
+      <div class="your-rank-badge-top">This month</div>
+      <div style="font-size:13px; color:var(--accent); font-weight:500">Top 15%</div>
+    </div>
+  </div>
+
+  <!-- ANON NOTE -->
+  <div class="anon-note">
+    <span class="anon-note-icon">🔒</span>
+    <span>All creators are shown anonymously. Handles like <strong>Creator_07</strong> are randomly assigned — only you can see your own real name highlighted in gold.</span>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter(this,'all')">All time</button>
+    <button class="filter-btn" onclick="setFilter(this,'month')">This month</button>
+    <button class="filter-btn" onclick="setFilter(this,'week')">This week</button>
+    <div class="filter-spacer"></div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" placeholder="Search niche..." oninput="filterNiche(this.value)">
+    </div>
+  </div>
+
+  <!-- TOP 3 PODIUM -->
+  <div class="podium">
+    <!-- Rank 2 -->
+    <div class="podium-card rank-2">
+      <div class="podium-rank">2</div>
+      <div class="podium-avatar">S</div>
+      <div class="podium-handle">Creator_12</div>
+      <div class="podium-niche">Home & Lifestyle</div>
+      <div class="podium-metric">₹1,14,800</div>
+      <div class="podium-metric-label">Revenue</div>
+      <div class="podium-orders">83 orders</div>
+    </div>
+    <!-- Rank 1 -->
+    <div class="podium-card rank-1">
+      <div class="podium-crown">👑</div>
+      <div class="podium-rank">1</div>
+      <div class="podium-avatar">A</div>
+      <div class="podium-handle">Creator_03</div>
+      <div class="podium-niche">Fashion & Style</div>
+      <div class="podium-metric">₹1,89,200</div>
+      <div class="podium-metric-label">Revenue</div>
+      <div class="podium-orders">124 orders</div>
+    </div>
+    <!-- Rank 3 = YOU -->
+    <div class="podium-card rank-3">
+      <div class="podium-rank">3</div>
+      <div class="podium-avatar" style="background:var(--accent-light);border-color:var(--accent);color:var(--accent)">P</div>
+      <div class="podium-handle" style="color:var(--accent)">You <span style="font-size:10px;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;vertical-align:middle;font-weight:500">YOU</span></div>
+      <div class="podium-niche">Home & Lifestyle</div>
+      <div class="podium-metric" style="color:var(--accent)">₹68,420</div>
+      <div class="podium-metric-label">Revenue</div>
+      <div class="podium-orders">47 orders</div>
+    </div>
+  </div>
+
+  <!-- FULL TABLE -->
+  <div class="leaderboard-card">
+    <div class="leaderboard-header">
+      <div class="leaderboard-title">All creators</div>
+      <div class="leaderboard-count" id="creator-count">18 active creators</div>
+    </div>
+    <table class="lb-table" id="lb-table">
+      <thead>
+        <tr>
+          <th style="width:50px">Rank</th>
+          <th>Creator</th>
+          <th>Followers</th>
+          <th>Orders</th>
+          <th style="text-align:right">Revenue</th>
+        </tr>
+      </thead>
+      <tbody id="lb-body">
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<script>
+const creators = [
+  { rank:1, code:'Creator_03', niche:'Fashion & Style', followers:'52K', orders:124, revenue:189200, trend:'same', you:false },
+  { rank:2, code:'Creator_12', niche:'Home & Lifestyle', followers:'38K', orders:83, revenue:114800, trend:'up', you:false },
+  { rank:3, code:'You', niche:'Home & Lifestyle', followers:'24.8K', orders:47, revenue:68420, trend:'up', you:true },
+  { rank:4, code:'Creator_07', niche:'Beauty & Wellness', followers:'61K', orders:41, revenue:52100, trend:'down', you:false },
+  { rank:5, code:'Creator_19', niche:'Fashion & Style', followers:'18K', orders:38, revenue:48600, trend:'up', you:false },
+  { rank:6, code:'Creator_01', niche:'Home & Lifestyle', followers:'29K', orders:34, revenue:44200, trend:'same', you:false },
+  { rank:7, code:'Creator_22', niche:'Food & Cooking', followers:'44K', orders:29, revenue:38900, trend:'up', you:false },
+  { rank:8, code:'Creator_15', niche:'Travel & Outdoors', followers:'71K', orders:26, revenue:35400, trend:'down', you:false },
+  { rank:9, code:'Creator_08', niche:'Fashion & Style', followers:'15K', orders:22, revenue:28800, trend:'up', you:false },
+  { rank:10, code:'Creator_31', niche:'Beauty & Wellness', followers:'33K', orders:19, revenue:24100, trend:'same', you:false },
+  { rank:11, code:'Creator_05', niche:'Home & Lifestyle', followers:'22K', orders:17, revenue:21500, trend:'down', you:false },
+  { rank:12, code:'Creator_28', niche:'Food & Cooking', followers:'19K', orders:14, revenue:18200, trend:'up', you:false },
+  { rank:13, code:'Creator_17', niche:'Fashion & Style', followers:'27K', orders:12, revenue:15600, trend:'same', you:false },
+  { rank:14, code:'Creator_11', niche:'Home & Lifestyle', followers:'12K', orders:10, revenue:13400, trend:'up', you:false },
+  { rank:15, code:'Creator_24', niche:'Beauty & Wellness', followers:'8K', orders:8, revenue:10200, trend:'down', you:false },
+  { rank:16, code:'Creator_09', niche:'Travel & Outdoors', followers:'16K', orders:6, revenue:8100, trend:'same', you:false },
+  { rank:17, code:'Creator_33', niche:'Food & Cooking', followers:'9K', orders:4, revenue:5400, trend:'up', you:false },
+  { rank:18, code:'Creator_42', niche:'Fashion & Style', followers:'7K', orders:2, revenue:2800, trend:'same', you:false },
+];
+
+function fmt(n) {
+  return '₹' + n.toLocaleString('en-IN');
+}
+
+function trendIcon(t) {
+  if (t === 'up') return '<span class="trend trend-up">↑</span>';
+  if (t === 'down') return '<span class="trend trend-down">↓</span>';
+  return '<span class="trend trend-same">—</span>';
+}
+
+function renderTable(list) {
+  const tbody = document.getElementById('lb-body');
+  document.getElementById('creator-count').textContent = list.length + ' active creators';
+  tbody.innerHTML = list.map(c => `
+    <tr class="${c.you ? 'is-you' : ''}">
+      <td><span class="lb-rank-num ${c.rank <= 3 ? 'top3' : ''}">${c.rank}</span></td>
+      <td>
+        <div class="lb-creator">
+          <div class="lb-avatar ${c.you ? 'you' : ''}">${c.you ? 'P' : c.code.slice(-2)}</div>
+          <div>
+            <div class="lb-handle">
+              ${c.you ? 'You (Priya S.)' : c.code}
+              ${c.you ? '<span class="you-tag">YOU</span>' : ''}
+            </div>
+            <div class="lb-niche">${c.niche}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="lb-followers">${c.followers}</span></td>
+      <td><span class="lb-orders">${c.orders}${trendIcon(c.trend)}</span></td>
+      <td><span class="lb-revenue">${fmt(c.revenue)}</span></td>
+    </tr>
+  `).join('');
+}
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function setFilter(btn, f) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = f;
+  applyFilters();
+}
+
+function filterNiche(val) {
+  currentSearch = val.toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  let list = [...creators];
+  if (currentSearch) {
+    list = list.filter(c => c.niche.toLowerCase().includes(currentSearch));
+  }
+  renderTable(list);
+}
+
+renderTable(creators);
+</script>
+</body>
+</html>
