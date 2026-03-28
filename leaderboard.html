@@ -574,9 +574,11 @@ function applyFilters() {
 }
 
 renderTable(creators);
-<script id="modomu-lead-data">
-(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var mc=localStorage.getItem("modomu_code")||new URLSearchParams(location.search).get("code");fetch(API+"?action=leaderboard"+(mc?"&code="+encodeURIComponent(mc):"")).then(function(r){return r.json();}).then(function(d){if(!d.ok||!d.leaderboard||!d.leaderboard.length)return;var list=d.leaderboard.map(function(item){return{rank:item.rank,code:item.handle||item.code||("Creator_"+item.rank),niche:item.category||"Lifestyle",followers:item.followers||"--",orders:item.orders||0,revenue:item.commission||0,trend:"same",you:mc&&(item.handle||"").toUpperCase()===mc.toUpperCase()};});renderTable(list);}).catch(function(){});})();
+
 </script>
+
+<script id="modomu-lead-data">
+(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var mc=localStorage.getItem("modomu_code")||new URLSearchParams(location.search).get("code");function load(){fetch(API+"?action=leaderboard"+(mc?"&code="+encodeURIComponent(mc):"")).then(function(r){return r.json();}).then(function(d){if(!d.ok||!d.leaderboard||!d.leaderboard.length)return;var list=d.leaderboard.map(function(i){return{rank:i.rank,code:i.handle||i.code||("Creator_"+i.rank),niche:i.category||"Lifestyle",followers:i.followers||"--",orders:i.orders||0,revenue:i.commission||0,trend:"same",you:mc&&(i.handle||"").toUpperCase()===mc.toUpperCase()};});if(typeof renderTable==="function")renderTable(list);var c=document.getElementById("creator-count");if(c)c.textContent=list.length+" active creators";}).catch(function(){});}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){setTimeout(load,50);}):setTimeout(load,50);})();
 </script>
 </body>
 </html>
