@@ -574,6 +574,9 @@ function applyFilters() {
 }
 
 renderTable(creators);
+<script id="modomu-lead-data">
+(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var mc=localStorage.getItem("modomu_code")||new URLSearchParams(location.search).get("code");fetch(API+"?action=leaderboard"+(mc?"&code="+encodeURIComponent(mc):"")).then(function(r){return r.json();}).then(function(d){if(!d.ok||!d.leaderboard||!d.leaderboard.length)return;var list=d.leaderboard.map(function(item){return{rank:item.rank,code:item.handle||item.code||("Creator_"+item.rank),niche:item.category||"Lifestyle",followers:item.followers||"--",orders:item.orders||0,revenue:item.commission||0,trend:"same",you:mc&&(item.handle||"").toUpperCase()===mc.toUpperCase()};});renderTable(list);}).catch(function(){});})();
+</script>
 </script>
 </body>
 </html>
