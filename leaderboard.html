@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,325 +26,139 @@
     --sidebar-w: 220px;
   }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--black);
-    min-height: 100vh;
-    display: flex;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); min-height: 100vh; display: flex; }
 
-  /* SIDEBAR — same as dashboard */
-  .sidebar {
-    width: var(--sidebar-w);
-    background: var(--white);
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    position: fixed; top: 0; left: 0; bottom: 0;
-    z-index: 50; padding: 0 0 24px;
-  }
-  .sidebar-logo {
-    padding: 20px 24px 18px;
-    border-bottom: 1px solid var(--border);
-  }
+  /* SIDEBAR */
+  .sidebar { width: var(--sidebar-w); background: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; padding: 0 0 24px; }
+  .sidebar-logo { padding: 20px 24px 18px; border-bottom: 1px solid var(--border); }
   .sidebar-logo img { height: 22px; }
   .sidebar-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; }
-  .sidebar-creator {
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .creator-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--accent-light); border: 2px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--accent);
-    margin-bottom: 10px;
-  }
+  .sidebar-creator { padding: 18px 24px; border-bottom: 1px solid var(--border); }
+  .creator-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--accent); margin-bottom: 10px; }
   .creator-name { font-size: 13px; font-weight: 500; }
   .creator-handle { font-size: 11px; color: var(--mid); margin-top: 1px; }
-  .creator-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    margin-top: 8px; font-size: 10px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--green);
-    background: var(--green-bg); border: 1px solid var(--green-border);
-    padding: 3px 8px; border-radius: 20px;
-  }
+  .creator-badge { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); padding: 3px 8px; border-radius: 20px; }
   .creator-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); }
   .sidebar-nav { padding: 16px 12px; flex: 1; }
-  .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; color: var(--mid); cursor: pointer;
-    transition: all 0.15s; margin-bottom: 2px; text-decoration: none;
-  }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: var(--mid); cursor: pointer; transition: all 0.15s; margin-bottom: 2px; text-decoration: none; }
   .nav-item:hover { background: var(--cream); color: var(--black); }
   .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
   .nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
-  .nav-section-label {
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--light); padding: 12px 12px 6px; font-weight: 500;
-  }
+  .nav-section-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); padding: 12px 12px 6px; font-weight: 500; }
   .sidebar-footer { padding: 0 12px; border-top: 1px solid var(--border); padding-top: 16px; }
-  .logout-btn {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; color: var(--light); cursor: pointer;
-    transition: all 0.15s; width: 100%; background: none; border: none;
-    font-family: 'DM Sans', sans-serif;
-  }
+  .logout-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: var(--light); cursor: pointer; transition: all 0.15s; width: 100%; background: none; border: none; font-family: 'DM Sans', sans-serif; }
   .logout-btn:hover { color: #c0503a; background: #fdf1ee; }
-
-  .mobile-toggle {
-    display: none; position: fixed; top: 16px; left: 16px; z-index: 100;
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--white); border: 1px solid var(--border);
-    align-items: center; justify-content: center;
-    cursor: pointer; font-size: 16px;
-  }
+  .mobile-toggle { display: none; position: fixed; top: 16px; left: 16px; z-index: 100; width: 36px; height: 36px; border-radius: 8px; background: var(--white); border: 1px solid var(--border); align-items: center; justify-content: center; cursor: pointer; font-size: 16px; }
 
   /* MAIN */
   .main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 40px; min-height: 100vh; }
-
   .page-header { margin-bottom: 32px; }
-  .page-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 10px;
-  }
+  .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
   .page-eyebrow::before { content:''; width:20px; height:1px; background:var(--accent); }
-  .page-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 30px; line-height: 1.1; margin-bottom: 6px;
-  }
+  .page-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.1; margin-bottom: 6px; }
   .page-title em { font-style: italic; color: var(--accent); }
   .page-sub { font-size: 13px; color: var(--mid); }
 
   /* YOUR RANK BANNER */
-  .your-rank-banner {
-    background: var(--black); border-radius: 14px;
-    padding: 22px 28px; margin-bottom: 28px;
-    display: flex; align-items: center; gap: 20px;
-    animation: fadeUp 0.4s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(10px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  .your-rank-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 48px; color: var(--accent);
-    line-height: 1; flex-shrink: 0;
-  }
+  .your-rank-banner { background: var(--black); border-radius: 14px; padding: 22px 28px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; animation: fadeUp 0.4s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .your-rank-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--accent); line-height: 1; flex-shrink: 0; }
   .your-rank-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-  .your-rank-title { font-size: 16px; font-weight: 500; color: var(--white); }
-  .your-rank-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
   .your-rank-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
   .your-rank-stats { display: flex; gap: 32px; }
-  .rank-stat-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; color: var(--white); margin-bottom: 3px;
-  }
+  .rank-stat-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); margin-bottom: 3px; }
   .rank-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
-  .your-rank-badge {
-    margin-left: auto; flex-shrink: 0;
-    background: rgba(201,169,110,0.15);
-    border: 1px solid rgba(201,169,110,0.3);
-    border-radius: 8px; padding: 8px 14px;
-    font-size: 12px; color: var(--accent);
-    text-align: center;
-  }
+  .your-rank-badge { margin-left: auto; flex-shrink: 0; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: var(--accent); text-align: center; }
   .your-rank-badge-top { font-size: 10px; color: rgba(201,169,110,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
 
   /* FILTERS */
-  .filters {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 20px;
-  }
-  .filter-btn {
-    padding: 7px 16px; border-radius: 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px; cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--white); color: var(--mid);
-    transition: all 0.15s;
-  }
+  .filters { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .filter-btn { padding: 7px 16px; border-radius: 20px; font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--mid); transition: all 0.15s; }
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .filter-btn.active {
-    background: var(--black); color: var(--white);
-    border-color: var(--black);
-  }
+  .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
   .filter-spacer { flex: 1; }
-  .search-wrap {
-    position: relative;
-  }
-  .search-wrap input {
-    padding: 7px 14px 7px 32px;
-    border: 1px solid var(--border); border-radius: 20px;
-    background: var(--white); font-family: 'DM Sans', sans-serif;
-    font-size: 12px; color: var(--black); outline: none;
-    width: 180px; transition: border-color 0.2s;
-  }
+  .search-wrap { position: relative; }
+  .search-wrap input { padding: 7px 14px 7px 32px; border: 1px solid var(--border); border-radius: 20px; background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--black); outline: none; width: 180px; transition: border-color 0.2s; }
   .search-wrap input:focus { border-color: var(--accent); }
   .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.4; }
 
   /* TOP 3 PODIUM */
-  .podium {
-    display: grid; grid-template-columns: 1fr 1.1fr 1fr;
-    gap: 12px; margin-bottom: 24px;
-    animation: fadeUp 0.4s ease both 0.1s;
-  }
-  .podium-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px; padding: 24px 20px;
-    text-align: center; position: relative;
-    transition: border-color 0.2s, transform 0.2s;
-  }
+  .podium { display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 12px; margin-bottom: 24px; animation: fadeUp 0.4s ease both 0.1s; }
+  .podium-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px 20px; text-align: center; position: relative; transition: border-color 0.2s, transform 0.2s; }
   .podium-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .podium-card.rank-1 {
-    background: var(--black);
-    border-color: var(--gold);
-    padding-top: 32px;
-  }
-  .podium-rank {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 13px;
-    border: 2px solid var(--white);
-  }
+  .podium-card.rank-1 { background: var(--black); border-color: var(--gold); padding-top: 32px; }
+  .podium-rank { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 13px; border: 2px solid var(--white); }
   .rank-1 .podium-rank { background: var(--gold); color: var(--black); }
   .rank-2 .podium-rank { background: var(--silver); color: var(--white); }
   .rank-3 .podium-rank { background: var(--bronze); color: var(--white); }
-  .podium-avatar {
-    width: 52px; height: 52px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 20px;
-    margin: 0 auto 12px; border: 2px solid;
-  }
+  .podium-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 20px; margin: 0 auto 12px; border: 2px solid; }
   .rank-1 .podium-avatar { background: rgba(201,169,110,0.2); border-color: var(--gold); color: var(--gold); }
   .rank-2 .podium-avatar { background: #f5f5f3; border-color: var(--silver); color: var(--silver); }
   .rank-3 .podium-avatar { background: #fdf5ef; border-color: var(--bronze); color: var(--bronze); }
-  .podium-handle {
-    font-size: 13px; font-weight: 500; margin-bottom: 4px;
-  }
+  .podium-handle { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
   .rank-1 .podium-handle { color: var(--white); }
-  .podium-niche {
-    font-size: 11px; color: var(--mid); margin-bottom: 14px;
-    text-transform: capitalize;
-  }
+  .podium-niche { font-size: 11px; color: var(--mid); margin-bottom: 14px; text-transform: capitalize; }
   .rank-1 .podium-niche { color: rgba(255,255,255,0.4); }
-  .podium-metric {
-    font-family: 'DM Serif Display', serif;
-    font-size: 24px; color: var(--black); margin-bottom: 2px;
-  }
+  .podium-metric { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--black); margin-bottom: 2px; }
   .rank-1 .podium-metric { color: var(--gold); }
   .rank-2 .podium-metric { color: var(--silver); }
   .rank-3 .podium-metric { color: var(--bronze); }
   .podium-metric-label { font-size: 10px; color: var(--light); letter-spacing: 0.06em; text-transform: uppercase; }
   .rank-1 .podium-metric-label { color: rgba(255,255,255,0.3); }
-  .podium-orders {
-    margin-top: 12px; padding-top: 12px;
-    border-top: 1px solid var(--border);
-    font-size: 11px; color: var(--mid);
-  }
+  .podium-orders { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--mid); }
   .rank-1 .podium-orders { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
-  .podium-crown {
-    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
-    font-size: 16px;
-  }
+  .podium-crown { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-size: 16px; }
+
+  /* Empty state for podium */
+  .podium-empty { grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--mid); font-size: 13px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; }
 
   /* LEADERBOARD TABLE */
-  .leaderboard-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px; overflow: hidden;
-    animation: fadeUp 0.4s ease both 0.2s;
-  }
-  .leaderboard-header {
-    padding: 16px 22px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  .leaderboard-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; animation: fadeUp 0.4s ease both 0.2s; }
+  .leaderboard-header { padding: 16px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .leaderboard-title { font-size: 14px; font-weight: 500; }
   .leaderboard-count { font-size: 12px; color: var(--mid); }
-
   .lb-table { width: 100%; border-collapse: collapse; }
-  .lb-table th {
-    padding: 10px 18px;
-    text-align: left; font-size: 10px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--light); font-weight: 500;
-    background: var(--cream); border-bottom: 1px solid var(--border);
-  }
+  .lb-table th { padding: 10px 18px; text-align: left; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); font-weight: 500; background: var(--cream); border-bottom: 1px solid var(--border); }
   .lb-table th:last-child { text-align: right; }
-  .lb-table td {
-    padding: 13px 18px; font-size: 13px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
+  .lb-table td { padding: 13px 18px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .lb-table tr:last-child td { border-bottom: none; }
   .lb-table tr:hover td { background: var(--cream); }
   .lb-table tr.is-you td { background: var(--accent-light); }
   .lb-table tr.is-you td:first-child { border-left: 3px solid var(--accent); }
-
-  .lb-rank-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 16px; color: var(--mid); width: 28px;
-    display: inline-block; text-align: center;
-  }
+  .lb-rank-num { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--mid); width: 28px; display: inline-block; text-align: center; }
   .lb-rank-num.top3 { color: var(--black); }
-
   .lb-creator { display: flex; align-items: center; gap: 12px; }
-  .lb-avatar {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--cream); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 13px;
-    color: var(--mid); flex-shrink: 0;
-  }
+  .lb-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 13px; color: var(--mid); flex-shrink: 0; }
   .lb-avatar.you { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
   .lb-handle { font-size: 13px; font-weight: 500; }
   .lb-niche { font-size: 11px; color: var(--mid); margin-top: 1px; }
-
   .lb-followers { font-size: 13px; color: var(--mid); }
   .lb-orders { font-size: 13px; font-weight: 500; }
-  .lb-revenue {
-    font-size: 13px; font-weight: 500;
-    text-align: right;
-  }
-  .you-tag {
-    display: inline-flex; align-items: center;
-    background: var(--accent); color: var(--black);
-    font-size: 9px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 2px 6px; border-radius: 4px;
-    margin-left: 6px; vertical-align: middle;
-  }
-
-  .trend {
-    display: inline-flex; align-items: center; gap: 2px;
-    font-size: 11px; margin-left: 4px;
-  }
+  .lb-revenue { font-size: 13px; font-weight: 500; text-align: right; }
+  .you-tag { display: inline-flex; align-items: center; background: var(--accent); color: var(--black); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .trend { display: inline-flex; align-items: center; gap: 2px; font-size: 11px; margin-left: 4px; }
   .trend-up { color: var(--green); }
   .trend-down { color: #c0503a; }
   .trend-same { color: var(--light); }
 
+  /* Empty table state */
+  .lb-empty { text-align: center; padding: 40px 20px; color: var(--mid); font-size: 13px; }
+
   /* ANON NOTE */
-  .anon-note {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--cream); border: 1px solid var(--border);
-    border-radius: 10px; padding: 12px 16px;
-    margin-bottom: 20px; font-size: 12px; color: var(--mid);
-    line-height: 1.6;
-  }
+  .anon-note { display: flex; align-items: center; gap: 10px; background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: var(--mid); line-height: 1.6; }
   .anon-note-icon { font-size: 14px; flex-shrink: 0; }
+
+  /* PERIOD LABEL on banner */
+  #banner-period-label { font-size: 10px; color: rgba(201,169,110,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
 
   @media (max-width: 900px) {
     .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
     .sidebar.open { transform: translateX(0); }
     .main { margin-left: 0; padding: 20px; padding-top: 60px; }
     .mobile-toggle { display: flex; }
+    /* On mobile, show rank-1 first (order trick) */
     .podium { grid-template-columns: 1fr; }
+    .podium-card.rank-1 { order: -1; }
     .your-rank-banner { flex-wrap: wrap; }
     .your-rank-stats { gap: 20px; }
   }
@@ -357,14 +171,13 @@
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
     <span class="sidebar-logo-text" style="display:none">modomu</span>
   </div>
   <div class="sidebar-creator">
-    <div class="creator-avatar">P</div>
-    <div class="creator-name">Priya Sharma</div>
-    <div class="creator-handle">@priya.lifestyle</div>
+    <div class="creator-avatar" id="sidebar-avatar">P</div>
+    <div class="creator-name" id="sidebar-name">Priya Sharma</div>
+    <div class="creator-handle" id="sidebar-handle">@priya.lifestyle</div>
     <div class="creator-badge">Active Creator</div>
   </div>
   <nav class="sidebar-nav">
@@ -374,16 +187,15 @@
     <a class="nav-item" href="dashboard.html#posts"><span class="nav-icon">📸</span> My Posts</a>
     <a class="nav-item active" href="#"><span class="nav-icon">🏆</span> Leaderboard</a>
     <div class="nav-section-label" style="margin-top:8px">Account</div>
-    <a class="nav-item" href="#"><span class="nav-icon">⚙</span> Settings</a>
+    <a class="nav-item" href="settings.html"><span class="nav-icon">⚙</span> Settings</a>
   </nav>
   <div class="sidebar-footer">
-    <button class="logout-btn"><span class="nav-icon">→</span> Sign out</button>
+    <button class="logout-btn" onclick="handleSignOut()"><span class="nav-icon">→</span> Sign out</button>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
-
   <div class="page-header">
     <div class="page-eyebrow">Community</div>
     <h1 class="page-title">Creator <em>Leaderboard</em></h1>
@@ -394,26 +206,26 @@
   <div class="your-rank-banner">
     <div>
       <div class="your-rank-label">Your current rank</div>
-      <div class="your-rank-num">#3</div>
+      <div class="your-rank-num" id="banner-rank">#3</div>
     </div>
     <div class="your-rank-divider"></div>
     <div class="your-rank-stats">
       <div>
-        <div class="rank-stat-num">₹68,420</div>
+        <div class="rank-stat-num" id="banner-revenue">₹68,420</div>
         <div class="rank-stat-label">Revenue generated</div>
       </div>
       <div>
-        <div class="rank-stat-num">47</div>
+        <div class="rank-stat-num" id="banner-orders">47</div>
         <div class="rank-stat-label">Total orders</div>
       </div>
       <div>
-        <div class="rank-stat-num">₹6,842</div>
+        <div class="rank-stat-num" id="banner-commission">₹6,842</div>
         <div class="rank-stat-label">Commission earned</div>
       </div>
     </div>
     <div class="your-rank-badge">
-      <div class="your-rank-badge-top">This month</div>
-      <div style="font-size:13px; color:var(--accent); font-weight:500">Top 15%</div>
+      <div id="banner-period-label">All time</div>
+      <div style="font-size:13px; color:var(--accent); font-weight:500" id="banner-percentile">Top 15%</div>
     </div>
   </div>
 
@@ -436,39 +248,7 @@
   </div>
 
   <!-- TOP 3 PODIUM -->
-  <div class="podium">
-    <!-- Rank 2 -->
-    <div class="podium-card rank-2">
-      <div class="podium-rank">2</div>
-      <div class="podium-avatar">S</div>
-      <div class="podium-handle">Creator_12</div>
-      <div class="podium-niche">Home & Lifestyle</div>
-      <div class="podium-metric">₹1,14,800</div>
-      <div class="podium-metric-label">Revenue</div>
-      <div class="podium-orders">83 orders</div>
-    </div>
-    <!-- Rank 1 -->
-    <div class="podium-card rank-1">
-      <div class="podium-crown">👑</div>
-      <div class="podium-rank">1</div>
-      <div class="podium-avatar">A</div>
-      <div class="podium-handle">Creator_03</div>
-      <div class="podium-niche">Fashion & Style</div>
-      <div class="podium-metric">₹1,89,200</div>
-      <div class="podium-metric-label">Revenue</div>
-      <div class="podium-orders">124 orders</div>
-    </div>
-    <!-- Rank 3 = YOU -->
-    <div class="podium-card rank-3">
-      <div class="podium-rank">3</div>
-      <div class="podium-avatar" style="background:var(--accent-light);border-color:var(--accent);color:var(--accent)">P</div>
-      <div class="podium-handle" style="color:var(--accent)">You <span style="font-size:10px;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;vertical-align:middle;font-weight:500">YOU</span></div>
-      <div class="podium-niche">Home & Lifestyle</div>
-      <div class="podium-metric" style="color:var(--accent)">₹68,420</div>
-      <div class="podium-metric-label">Revenue</div>
-      <div class="podium-orders">47 orders</div>
-    </div>
-  </div>
+  <div class="podium" id="podium"></div>
 
   <!-- FULL TABLE -->
   <div class="leaderboard-card">
@@ -486,57 +266,150 @@
           <th style="text-align:right">Revenue</th>
         </tr>
       </thead>
-      <tbody id="lb-body">
-      </tbody>
+      <tbody id="lb-body"></tbody>
     </table>
   </div>
-
 </main>
 
 <script>
-const creators = [
-  { rank:1, code:'Creator_03', niche:'Fashion & Style', followers:'52K', orders:124, revenue:189200, trend:'same', you:false },
-  { rank:2, code:'Creator_12', niche:'Home & Lifestyle', followers:'38K', orders:83, revenue:114800, trend:'up', you:false },
-  { rank:3, code:'You', niche:'Home & Lifestyle', followers:'24.8K', orders:47, revenue:68420, trend:'up', you:true },
-  { rank:4, code:'Creator_07', niche:'Beauty & Wellness', followers:'61K', orders:41, revenue:52100, trend:'down', you:false },
-  { rank:5, code:'Creator_19', niche:'Fashion & Style', followers:'18K', orders:38, revenue:48600, trend:'up', you:false },
-  { rank:6, code:'Creator_01', niche:'Home & Lifestyle', followers:'29K', orders:34, revenue:44200, trend:'same', you:false },
-  { rank:7, code:'Creator_22', niche:'Food & Cooking', followers:'44K', orders:29, revenue:38900, trend:'up', you:false },
-  { rank:8, code:'Creator_15', niche:'Travel & Outdoors', followers:'71K', orders:26, revenue:35400, trend:'down', you:false },
-  { rank:9, code:'Creator_08', niche:'Fashion & Style', followers:'15K', orders:22, revenue:28800, trend:'up', you:false },
-  { rank:10, code:'Creator_31', niche:'Beauty & Wellness', followers:'33K', orders:19, revenue:24100, trend:'same', you:false },
-  { rank:11, code:'Creator_05', niche:'Home & Lifestyle', followers:'22K', orders:17, revenue:21500, trend:'down', you:false },
-  { rank:12, code:'Creator_28', niche:'Food & Cooking', followers:'19K', orders:14, revenue:18200, trend:'up', you:false },
-  { rank:13, code:'Creator_17', niche:'Fashion & Style', followers:'27K', orders:12, revenue:15600, trend:'same', you:false },
-  { rank:14, code:'Creator_11', niche:'Home & Lifestyle', followers:'12K', orders:10, revenue:13400, trend:'up', you:false },
-  { rank:15, code:'Creator_24', niche:'Beauty & Wellness', followers:'8K', orders:8, revenue:10200, trend:'down', you:false },
-  { rank:16, code:'Creator_09', niche:'Travel & Outdoors', followers:'16K', orders:6, revenue:8100, trend:'same', you:false },
-  { rank:17, code:'Creator_33', niche:'Food & Cooking', followers:'9K', orders:4, revenue:5400, trend:'up', you:false },
-  { rank:18, code:'Creator_42', niche:'Fashion & Style', followers:'7K', orders:2, revenue:2800, trend:'same', you:false },
+// ─── DATA ────────────────────────────────────────────────────────────────────
+// Each creator has revenue/orders broken down by period so filters work.
+// 'all' = all-time totals; 'month' = this month; 'week' = this week
+const creatorsRaw = [
+  { id:'03', niche:'Fashion & Style',    followers:'52K',   you:false, commission_rate:0.10,
+    all:{orders:124, revenue:189200}, month:{orders:38, revenue:57400}, week:{orders:9, revenue:13700} },
+  { id:'12', niche:'Home & Lifestyle',   followers:'38K',   you:false, commission_rate:0.10,
+    all:{orders:83,  revenue:114800}, month:{orders:24, revenue:33200}, week:{orders:5, revenue:7600}  },
+  { id:'YOU',niche:'Home & Lifestyle',   followers:'24.8K', you:true,  commission_rate:0.10,
+    all:{orders:47,  revenue:68420},  month:{orders:14, revenue:20500}, week:{orders:3, revenue:4800}  },
+  { id:'07', niche:'Beauty & Wellness',  followers:'61K',   you:false, commission_rate:0.10,
+    all:{orders:41,  revenue:52100},  month:{orders:11, revenue:14200}, week:{orders:2, revenue:2900}  },
+  { id:'19', niche:'Fashion & Style',    followers:'18K',   you:false, commission_rate:0.10,
+    all:{orders:38,  revenue:48600},  month:{orders:10, revenue:12800}, week:{orders:2, revenue:2600}  },
+  { id:'01', niche:'Home & Lifestyle',   followers:'29K',   you:false, commission_rate:0.10,
+    all:{orders:34,  revenue:44200},  month:{orders:9,  revenue:11600}, week:{orders:2, revenue:2400}  },
+  { id:'22', niche:'Food & Cooking',     followers:'44K',   you:false, commission_rate:0.10,
+    all:{orders:29,  revenue:38900},  month:{orders:8,  revenue:10400}, week:{orders:1, revenue:2100}  },
+  { id:'15', niche:'Travel & Outdoors',  followers:'71K',   you:false, commission_rate:0.10,
+    all:{orders:26,  revenue:35400},  month:{orders:7,  revenue:9200},  week:{orders:1, revenue:1900}  },
+  { id:'08', niche:'Fashion & Style',    followers:'15K',   you:false, commission_rate:0.10,
+    all:{orders:22,  revenue:28800},  month:{orders:6,  revenue:7700},  week:{orders:1, revenue:1600}  },
+  { id:'31', niche:'Beauty & Wellness',  followers:'33K',   you:false, commission_rate:0.10,
+    all:{orders:19,  revenue:24100},  month:{orders:5,  revenue:6400},  week:{orders:1, revenue:1300}  },
+  { id:'05', niche:'Home & Lifestyle',   followers:'22K',   you:false, commission_rate:0.10,
+    all:{orders:17,  revenue:21500},  month:{orders:4,  revenue:5700},  week:{orders:1, revenue:1200}  },
+  { id:'28', niche:'Food & Cooking',     followers:'19K',   you:false, commission_rate:0.10,
+    all:{orders:14,  revenue:18200},  month:{orders:4,  revenue:4900},  week:{orders:0, revenue:0}     },
+  { id:'17', niche:'Fashion & Style',    followers:'27K',   you:false, commission_rate:0.10,
+    all:{orders:12,  revenue:15600},  month:{orders:3,  revenue:4100},  week:{orders:0, revenue:0}     },
+  { id:'11', niche:'Home & Lifestyle',   followers:'12K',   you:false, commission_rate:0.10,
+    all:{orders:10,  revenue:13400},  month:{orders:3,  revenue:3600},  week:{orders:0, revenue:0}     },
+  { id:'24', niche:'Beauty & Wellness',  followers:'8K',    you:false, commission_rate:0.10,
+    all:{orders:8,   revenue:10200},  month:{orders:2,  revenue:2700},  week:{orders:0, revenue:0}     },
+  { id:'09', niche:'Travel & Outdoors',  followers:'16K',   you:false, commission_rate:0.10,
+    all:{orders:6,   revenue:8100},   month:{orders:1,  revenue:2100},  week:{orders:0, revenue:0}     },
+  { id:'33', niche:'Food & Cooking',     followers:'9K',    you:false, commission_rate:0.10,
+    all:{orders:4,   revenue:5400},   month:{orders:1,  revenue:1400},  week:{orders:0, revenue:0}     },
+  { id:'42', niche:'Fashion & Style',    followers:'7K',    you:false, commission_rate:0.10,
+    all:{orders:2,   revenue:2800},   month:{orders:0,  revenue:0},     week:{orders:0, revenue:0}     },
 ];
 
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let currentPeriod = 'all';
+let currentSearch = '';
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 function fmt(n) {
   return '₹' + n.toLocaleString('en-IN');
 }
 
 function trendIcon(t) {
-  if (t === 'up') return '<span class="trend trend-up">↑</span>';
+  if (t === 'up')   return '<span class="trend trend-up">↑</span>';
   if (t === 'down') return '<span class="trend trend-down">↓</span>';
   return '<span class="trend trend-same">—</span>';
 }
 
+function avatarInitial(c) {
+  if (c.you) return 'P';
+  return c.id.slice(-2);
+}
+
+// Build a sorted, ranked list for a given period
+function buildList(period) {
+  return creatorsRaw
+    .map(c => ({
+      ...c,
+      orders: c[period].orders,
+      revenue: c[period].revenue,
+      commission: Math.round(c[period].revenue * c.commission_rate),
+      trend: 'same' // trend would come from API in production
+    }))
+    .sort((a, b) => b.revenue - a.revenue)
+    .map((c, i) => ({ ...c, rank: i + 1 }));
+}
+
+// ─── RENDER PODIUM ───────────────────────────────────────────────────────────
+function renderPodium(list) {
+  const podiumEl = document.getElementById('podium');
+  const top3 = list.slice(0, 3);
+
+  if (top3.length === 0) {
+    podiumEl.innerHTML = '<div class="podium-empty">No creators match this filter.</div>';
+    return;
+  }
+
+  // Always display order: rank-2, rank-1, rank-3 (podium visual layout)
+  // On mobile CSS handles order via order:-1 on rank-1
+  const display = top3.length >= 2
+    ? [top3[1], top3[0], top3[2]].filter(Boolean)
+    : [top3[0]];
+
+  podiumEl.innerHTML = display.map(c => {
+    const rankClass = `rank-${c.rank}`;
+    const isYou = c.you;
+    const avatarStyle = isYou
+      ? 'style="background:var(--accent-light);border-color:var(--accent);color:var(--accent)"'
+      : '';
+    const handleStyle = isYou ? 'style="color:var(--accent)"' : '';
+    const youBadge = isYou
+      ? '<span style="font-size:10px;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;vertical-align:middle;font-weight:500;margin-left:4px">YOU</span>'
+      : '';
+    const crown = c.rank === 1 ? '<div class="podium-crown">👑</div>' : '';
+
+    return `
+      <div class="podium-card ${rankClass}">
+        ${crown}
+        <div class="podium-rank">${c.rank}</div>
+        <div class="podium-avatar" ${avatarStyle}>${avatarInitial(c)}</div>
+        <div class="podium-handle" ${handleStyle}>${isYou ? 'You' : 'Creator_' + c.id}${youBadge}</div>
+        <div class="podium-niche">${c.niche}</div>
+        <div class="podium-metric">${fmt(c.revenue)}</div>
+        <div class="podium-metric-label">Revenue</div>
+        <div class="podium-orders">${c.orders} orders</div>
+      </div>`;
+  }).join('');
+}
+
+// ─── RENDER TABLE ────────────────────────────────────────────────────────────
 function renderTable(list) {
   const tbody = document.getElementById('lb-body');
-  document.getElementById('creator-count').textContent = list.length + ' active creators';
+  const countEl = document.getElementById('creator-count');
+  countEl.textContent = list.length + ' active creator' + (list.length !== 1 ? 's' : '');
+
+  if (list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No creators match this filter.</td></tr>';
+    return;
+  }
+
   tbody.innerHTML = list.map(c => `
     <tr class="${c.you ? 'is-you' : ''}">
       <td><span class="lb-rank-num ${c.rank <= 3 ? 'top3' : ''}">${c.rank}</span></td>
       <td>
         <div class="lb-creator">
-          <div class="lb-avatar ${c.you ? 'you' : ''}">${c.you ? 'P' : c.code.slice(-2)}</div>
+          <div class="lb-avatar ${c.you ? 'you' : ''}">${avatarInitial(c)}</div>
           <div>
             <div class="lb-handle">
-              ${c.you ? 'You (Priya S.)' : c.code}
+              ${c.you ? 'You (Priya S.)' : 'Creator_' + c.id}
               ${c.you ? '<span class="you-tag">YOU</span>' : ''}
             </div>
             <div class="lb-niche">${c.niche}</div>
@@ -550,35 +423,133 @@ function renderTable(list) {
   `).join('');
 }
 
-let currentFilter = 'all';
-let currentSearch = '';
+// ─── UPDATE BANNER ───────────────────────────────────────────────────────────
+function updateBanner(list, period) {
+  const you = list.find(c => c.you);
+  if (!you) return;
 
-function setFilter(btn, f) {
+  document.getElementById('banner-rank').textContent = '#' + you.rank;
+  document.getElementById('banner-revenue').textContent = fmt(you.revenue);
+  document.getElementById('banner-orders').textContent = you.orders;
+  document.getElementById('banner-commission').textContent = fmt(you.commission);
+
+  const periodLabels = { all: 'All time', month: 'This month', week: 'This week' };
+  document.getElementById('banner-period-label').textContent = periodLabels[period] || 'All time';
+
+  // Calculate percentile
+  const total = list.length;
+  const pct = Math.round((1 - (you.rank - 1) / total) * 100);
+  document.getElementById('banner-percentile').textContent = 'Top ' + (100 - pct + 1) + '%';
+}
+
+// ─── APPLY FILTERS (main render function) ────────────────────────────────────
+function applyFilters() {
+  let list = buildList(currentPeriod);
+
+  // Apply niche search filter
+  if (currentSearch) {
+    list = list.filter(c => c.niche.toLowerCase().includes(currentSearch));
+    // Re-rank after filtering
+    list = list.map((c, i) => ({ ...c, rank: i + 1 }));
+  }
+
+  renderPodium(list);
+  renderTable(list);
+
+  // Only update banner if not filtered (banner always shows your real rank)
+  if (!currentSearch) {
+    updateBanner(list, currentPeriod);
+  }
+}
+
+// ─── EVENT HANDLERS ──────────────────────────────────────────────────────────
+function setFilter(btn, period) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  currentFilter = f;
+  currentPeriod = period;
   applyFilters();
 }
 
 function filterNiche(val) {
-  currentSearch = val.toLowerCase();
+  currentSearch = val.toLowerCase().trim();
   applyFilters();
 }
 
-function applyFilters() {
-  let list = [...creators];
-  if (currentSearch) {
-    list = list.filter(c => c.niche.toLowerCase().includes(currentSearch));
-  }
-  renderTable(list);
+function handleSignOut() {
+  // Clear local auth state
+  localStorage.removeItem('modomu_code');
+  localStorage.removeItem('modomu_session');
+  // Redirect to login / home
+  window.location.href = 'index.html';
 }
 
-renderTable(creators);
-
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+applyFilters();
 </script>
 
 <script id="modomu-lead-data">
-(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var mc=localStorage.getItem("modomu_code")||new URLSearchParams(location.search).get("code");function load(){fetch(API+"?action=leaderboard"+(mc?"&code="+encodeURIComponent(mc):"")).then(function(r){return r.json();}).then(function(d){if(!d.ok||!d.leaderboard||!d.leaderboard.length)return;var list=d.leaderboard.map(function(i){return{rank:i.rank,code:i.handle||i.code||("Creator_"+i.rank),niche:i.category||"Lifestyle",followers:i.followers||"--",orders:i.orders||0,revenue:i.commission||0,trend:"same",you:mc&&(i.handle||"").toUpperCase()===mc.toUpperCase()};});if(typeof renderTable==="function")renderTable(list);var c=document.getElementById("creator-count");if(c)c.textContent=list.length+" active creators";}).catch(function(){});}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){setTimeout(load,50);}):setTimeout(load,50);})();
+// Live API integration — replaces mock data when available
+(function(){
+  var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vJvg1hGTIPpN/exec";
+  var mc = localStorage.getItem("modomu_code") || new URLSearchParams(location.search).get("code");
+
+  function load() {
+    fetch(API + "?action=leaderboard" + (mc ? "&code=" + encodeURIComponent(mc) : ""))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok || !d.leaderboard || !d.leaderboard.length) return;
+
+        // Map API response into creatorsRaw format and re-render
+        // The API should ideally return period-specific data;
+        // if it only returns all-time, we populate all periods with the same data.
+        var apiList = d.leaderboard.map(function(item, i){
+          var rev = item.revenue || item.commission || 0;
+          var ord = item.orders || 0;
+          var isYou = mc && (item.handle || '').toUpperCase() === mc.toUpperCase();
+          return {
+            rank: i + 1,
+            id: item.handle ? item.handle.replace('Creator_','') : String(i+1),
+            niche: item.category || item.niche || 'Lifestyle',
+            followers: item.followers || '--',
+            you: isYou,
+            commission_rate: 0.10,
+            all:   { orders: ord,                          revenue: rev },
+            month: { orders: item.orders_month  || ord,   revenue: item.revenue_month  || rev },
+            week:  { orders: item.orders_week   || 0,     revenue: item.revenue_week   || 0 }
+          };
+        });
+
+        // Replace the global data source and re-render
+        window._liveCreators = apiList;
+        applyFilters();
+      })
+      .catch(function(){
+        // Silently fall back to mock data already rendered
+      });
+  }
+
+  // Override buildList to use live data if available
+  var _origBuildList = window.buildList;
+  window.buildList = function(period) {
+    var source = window._liveCreators || creatorsRaw;
+    return source
+      .map(function(c){
+        return Object.assign({}, c, {
+          orders: c[period] ? c[period].orders : c.all.orders,
+          revenue: c[period] ? c[period].revenue : c.all.revenue,
+          commission: Math.round((c[period] ? c[period].revenue : c.all.revenue) * (c.commission_rate || 0.10)),
+          trend: 'same'
+        });
+      })
+      .sort(function(a,b){ return b.revenue - a.revenue; })
+      .map(function(c, i){ return Object.assign({}, c, { rank: i+1 }); });
+  };
+
+  document.readyState === "loading"
+    ? document.addEventListener("DOMContentLoaded", function(){ setTimeout(load, 50); })
+    : setTimeout(load, 50);
+})();
 </script>
+
 </body>
 </html>
