@@ -375,7 +375,15 @@ function populateDashboard(d) {
   // Orders table
   const tbody = document.getElementById('orders-tbody');
   if (d.orders && d.orders.length) {
-    tbody.innerHTML = d.orders.slice(0, 8).map(o => `
+    // Deduplicate by order_number (API sometimes returns multiple rows per order)
+    const seen = new Set();
+    const uniqueOrders = d.orders.filter(o => {
+      const key = o.order_number || o.id;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    tbody.innerHTML = uniqueOrders.slice(0, 8).map(o => `
       <tr>
         <td><span class="order-id">#${o.order_number || o.id}</span></td>
         <td><span class="order-amount">${fmtINR(o.amount)}</span></td>
