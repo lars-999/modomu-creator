@@ -18,10 +18,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,248,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo img { height: 28px; display: block; }
 .nav-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); font-weight: 400; }
-/* Already have code banner */
-.dashboard-banner { position: fixed; top: 72px; right: 20px; z-index: 99; background: var(--black); color: var(--accent); padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 500; cursor: pointer; display: none; text-decoration: none; border: 1px solid rgba(201,169,110,0.3); }
+.dashboard-banner { display: none; align-items: center; gap: 6px; background: var(--black); color: var(--accent); padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; text-decoration: none; border: 1px solid rgba(201,169,110,0.3); transition: background 0.15s; white-space: nowrap; }
 .dashboard-banner:hover { background: #2d2d2d; }
 .hero { padding: 140px 48px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1160px; margin: 0 auto; }
+.hero-left { position: sticky; top: 84px; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 28px; }
 .hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
 h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 54px); line-height: 1.1; margin-bottom: 22px; }
@@ -99,6 +99,7 @@ footer { text-align: center; padding: 36px 48px; border-top: 1px solid var(--bor
 footer a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
+  .hero-left { position: static; }
   .hero-sub { max-width: 100%; }
   .steps-grid { grid-template-columns: 1fr; }
   .perks-grid { grid-template-columns: 1fr 1fr; }
@@ -120,10 +121,8 @@ footer a { color: inherit; text-decoration: none; }
     <span style="display:none; font-family:'DM Serif Display',serif; font-size:20px;">modomu</span>
   </a>
   <span class="nav-tag">Creator Program</span>
+  <a class="dashboard-banner" id="dashboard-banner" href="dashboard.html">→ Go to my dashboard</a>
 </nav>
-
-<!-- Banner for returning creators -->
-<a class="dashboard-banner" id="dashboard-banner" href="dashboard.html">→ Go to my dashboard</a>
 
 <section class="hero">
   <div class="hero-left">
@@ -146,7 +145,7 @@ footer a { color: inherit; text-decoration: none; }
       <div class="form-title">Apply to join</div>
       <div class="form-sub">Connect your Instagram — we'll pull your profile info automatically.</div>
 
-      <button class="btn-instagram" id="ig-btn" onclick="simulateInstagramLogin()">
+      <button class="btn-instagram" type="button" id="ig-btn" onclick="simulateInstagramLogin()">
         <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         Continue with Instagram
       </button>
@@ -189,7 +188,7 @@ footer a { color: inherit; text-decoration: none; }
 
       <div class="form-error" id="form-error">Please fill in your name and email address.</div>
 
-      <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">Submit application →</button>
+      <button class="btn-submit" type="button" id="submit-btn" onclick="handleSubmit()">Submit application →</button>
       <div class="form-note">We review applications within 2 business days.<br>By applying you agree to our creator terms.</div>
     </div>
 
@@ -237,9 +236,11 @@ var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0h
   var code = localStorage.getItem('modomu_code') || new URLSearchParams(location.search).get('code');
   if (code) {
     var b = document.getElementById('dashboard-banner');
+    var navTag = document.querySelector('.nav-tag');
     b.textContent = '→ Dashboard (' + code + ')';
     b.href = 'dashboard.html?code=' + code;
-    b.style.display = 'block';
+    b.style.display = 'flex';
+    if (navTag) navTag.style.display = 'none';
   }
   // Handle ?error= from sign-out redirect
   var err = new URLSearchParams(location.search).get('error');
