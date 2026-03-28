@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,489 +7,230 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --cream: #faf8f5;
-    --white: #fff;
-    --black: #1a1a1a;
-    --mid: #6b6b6b;
-    --light: #c8c4bc;
-    --accent: #c9a96e;
-    --accent-light: #f5ede0;
-    --border: #e8e4de;
-    --green: #7a9e5f;
-    --green-bg: #f0faf4;
-    --green-border: #c6e0cc;
-    --red: #c0503a;
-    --red-bg: #fdf1ee;
-    --sidebar-w: 220px;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--black);
-    min-height: 100vh;
-    display: flex;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #faf8f5; --white: #fff; --black: #1a1a1a; --mid: #6b6b6b;
+  --light: #c8c4bc; --accent: #c9a96e; --accent-light: #f5ede0;
+  --border: #e8e4de; --green: #7a9e5f; --green-bg: #f0faf4;
+  --green-border: #c6e0cc; --red: #c0503a; --red-bg: #fdf1ee;
+  --sidebar-w: 220px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); min-height: 100vh; display: flex; }
 
-  /* SIDEBAR */
-  .sidebar {
-    width: var(--sidebar-w);
-    background: var(--white);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0; bottom: 0;
-    z-index: 50;
-    padding: 0 0 24px;
-  }
-  .sidebar-logo {
-    padding: 20px 24px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .sidebar-logo img { height: 22px; }
-  .sidebar-logo-text {
-    font-family: 'DM Serif Display', serif;
-    font-size: 17px; color: var(--black);
-  }
-  .sidebar-creator {
-    padding: 18px 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .creator-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--accent-light);
-    border: 2px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    font-size: 15px; color: var(--accent);
-    margin-bottom: 10px;
-  }
-  .creator-name { font-size: 13px; font-weight: 500; }
-  .creator-handle { font-size: 11px; color: var(--mid); margin-top: 1px; }
-  .creator-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    margin-top: 8px;
-    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--green);
-    background: var(--green-bg); border: 1px solid var(--green-border);
-    padding: 3px 8px; border-radius: 20px;
-  }
-  .creator-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); }
+/* SIDEBAR */
+.sidebar { width: var(--sidebar-w); background: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; padding: 0 0 24px; }
+.sidebar-logo { padding: 20px 24px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.sidebar-logo img { height: 22px; }
+.sidebar-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--black); }
+.sidebar-creator { padding: 18px 24px; border-bottom: 1px solid var(--border); }
+.creator-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--accent); margin-bottom: 10px; }
+.creator-name { font-size: 13px; font-weight: 500; }
+.creator-handle { font-size: 11px; color: var(--mid); margin-top: 1px; }
+.creator-badge { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); padding: 3px 8px; border-radius: 20px; }
+.creator-badge::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); }
+.sidebar-nav { padding: 16px 12px; flex: 1; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: var(--mid); cursor: pointer; transition: all 0.15s; margin-bottom: 2px; text-decoration: none; }
+.nav-item:hover { background: var(--cream); color: var(--black); }
+.nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+.nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+.nav-section-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); padding: 12px 12px 6px; font-weight: 500; }
+.sidebar-footer { padding: 0 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+.logout-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: var(--light); cursor: pointer; transition: all 0.15s; width: 100%; background: none; border: none; font-family: 'DM Sans', sans-serif; }
+.logout-btn:hover { color: var(--red); background: var(--red-bg); }
 
-  .sidebar-nav { padding: 16px 12px; flex: 1; }
-  .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; color: var(--mid);
-    cursor: pointer; transition: all 0.15s;
-    margin-bottom: 2px; text-decoration: none;
-  }
-  .nav-item:hover { background: var(--cream); color: var(--black); }
-  .nav-item.active {
-    background: var(--accent-light);
-    color: var(--accent);
-    font-weight: 500;
-  }
-  .nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
-  .nav-section-label {
-    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--light); padding: 12px 12px 6px; font-weight: 500;
-  }
+/* MAIN */
+.main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 40px; min-height: 100vh; }
+.page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
+.page-title { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.1; }
+.page-title span { font-style: italic; color: var(--accent); }
+.page-sub { font-size: 13px; color: var(--mid); margin-top: 4px; }
+.header-date { font-size: 12px; color: var(--light); text-align: right; }
 
-  .sidebar-footer {
-    padding: 0 12px;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-  }
-  .logout-btn {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; color: var(--light);
-    cursor: pointer; transition: all 0.15s;
-    width: 100%; background: none; border: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .logout-btn:hover { color: var(--red); background: var(--red-bg); }
+/* PROMO CODE HERO */
+.promo-hero { background: var(--black); border-radius: 16px; padding: 28px 32px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; animation: fadeUp 0.4s ease both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.promo-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+.promo-code { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--accent); letter-spacing: 0.06em; margin-bottom: 8px; }
+.promo-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.promo-desc strong { color: rgba(255,255,255,0.8); }
+.promo-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.btn-copy { display: flex; align-items: center; gap: 7px; padding: 10px 18px; background: var(--accent); color: var(--black); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-copy:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-copy.copied { background: var(--green); color: white; }
+.btn-share { display: flex; align-items: center; gap: 7px; padding: 10px 18px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-share:hover { background: rgba(255,255,255,0.14); color: white; }
 
-  /* MAIN */
-  .main {
-    margin-left: var(--sidebar-w);
-    flex: 1;
-    padding: 32px 40px;
-    min-height: 100vh;
-  }
+/* STAT CARDS */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; animation: fadeUp 0.4s ease both 0.1s; }
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; transition: border-color 0.2s; }
+.stat-card:hover { border-color: var(--accent); }
+.stat-card-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 10px; font-weight: 500; }
+.stat-card-value { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--black); line-height: 1; margin-bottom: 6px; }
+.stat-card-value.green { color: var(--green); }
+.stat-card-value.accent { color: var(--accent); }
+.stat-card-sub { font-size: 11px; color: var(--mid); display: flex; align-items: center; gap: 4px; }
+.trend-up { color: var(--green); }
+.trend-down { color: var(--red); }
 
-  .page-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 32px;
-  }
-  .page-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 28px; line-height: 1.1;
-  }
-  .page-title span { font-style: italic; color: var(--accent); }
-  .page-sub { font-size: 13px; color: var(--mid); margin-top: 4px; }
-  .header-date { font-size: 12px; color: var(--light); text-align: right; }
+/* COMMISSION BANNER */
+.commission-banner { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 12px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; animation: fadeUp 0.4s ease both 0.15s; }
+.commission-left { display: flex; align-items: center; gap: 14px; }
+.commission-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--green); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.commission-label { font-size: 12px; color: var(--mid); margin-bottom: 3px; }
+.commission-amount { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--green); }
+.commission-note { font-size: 11px; color: var(--mid); margin-top: 2px; }
+.btn-claim { padding: 10px 20px; background: var(--green); color: white; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+.btn-claim:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-claim:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  /* PROMO CODE HERO */
-  .promo-hero {
-    background: var(--black);
-    border-radius: 16px;
-    padding: 28px 32px;
-    margin-bottom: 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px;
-    animation: fadeUp 0.4s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(12px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  .promo-left {}
-  .promo-label {
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4); margin-bottom: 10px;
-  }
-  .promo-code {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px; color: var(--accent);
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
-  }
-  .promo-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
-  .promo-desc strong { color: rgba(255,255,255,0.8); }
-  .promo-actions { display: flex; gap: 10px; flex-shrink: 0; }
-  .btn-copy {
-    display: flex; align-items: center; gap: 7px;
-    padding: 10px 18px;
-    background: var(--accent); color: var(--black);
-    border: none; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    transition: all 0.15s; white-space: nowrap;
-  }
-  .btn-copy:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn-copy.copied { background: var(--green); color: white; }
-  .btn-share {
-    display: flex; align-items: center; gap: 7px;
-    padding: 10px 18px;
-    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; cursor: pointer;
-    transition: all 0.15s; white-space: nowrap;
-  }
-  .btn-share:hover { background: rgba(255,255,255,0.14); color: white; }
+/* TWO COLUMN */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; animation: fadeUp 0.4s ease both 0.2s; }
+.card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.card-header { padding: 18px 22px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.card-title { font-size: 14px; font-weight: 500; }
+.card-action { font-size: 12px; color: var(--accent); cursor: pointer; text-decoration: none; }
+.card-action:hover { opacity: 0.7; }
 
-  /* STAT CARDS */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.4s ease both 0.1s;
-  }
-  .stat-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 22px;
-    transition: border-color 0.2s;
-  }
-  .stat-card:hover { border-color: var(--accent); }
-  .stat-card-label {
-    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--light); margin-bottom: 10px; font-weight: 500;
-  }
-  .stat-card-value {
-    font-family: 'DM Serif Display', serif;
-    font-size: 26px; color: var(--black); line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-card-value.green { color: var(--green); }
-  .stat-card-value.accent { color: var(--accent); }
-  .stat-card-sub {
-    font-size: 11px; color: var(--mid);
-    display: flex; align-items: center; gap: 4px;
-  }
-  .trend-up { color: var(--green); }
-  .trend-down { color: var(--red); }
+/* ORDERS TABLE */
+.orders-table { width: 100%; border-collapse: collapse; }
+.orders-table th { padding: 10px 16px; text-align: left; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); font-weight: 500; background: var(--cream); border-bottom: 1px solid var(--border); }
+.orders-table td { padding: 12px 16px; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.orders-table tr:last-child td { border-bottom: none; }
+.orders-table tr:hover td { background: var(--cream); }
+.order-id { font-family: monospace; font-size: 12px; color: var(--mid); }
+.order-amount { font-weight: 500; }
+.order-commission { color: var(--green); font-weight: 500; }
 
-  /* COMMISSION BANNER */
-  .commission-banner {
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    border-radius: 12px;
-    padding: 18px 24px;
-    margin-bottom: 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    animation: fadeUp 0.4s ease both 0.15s;
-  }
-  .commission-left { display: flex; align-items: center; gap: 14px; }
-  .commission-icon {
-    width: 42px; height: 42px; border-radius: 10px;
-    background: var(--green); color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .commission-label { font-size: 12px; color: var(--mid); margin-bottom: 3px; }
-  .commission-amount {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; color: var(--green);
-  }
-  .commission-note { font-size: 11px; color: var(--mid); margin-top: 2px; }
-  .btn-claim {
-    padding: 10px 20px;
-    background: var(--green); color: white;
-    border: none; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    transition: all 0.15s;
-  }
-  .btn-claim:hover { opacity: 0.88; transform: translateY(-1px); }
+/* STATUS BADGE — unified class naming */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+.badge::before { content:''; width:5px; height:5px; border-radius:50%; }
+.badge-delivered, .badge.delivered { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-delivered::before, .badge.delivered::before { background: var(--green); }
+.badge-shipped, .badge.shipped { background: #eef4fd; color: #3b72c0; border: 1px solid #c0d4f0; }
+.badge-shipped::before, .badge.shipped::before { background: #3b72c0; }
+.badge-processing, .badge.processing { background: var(--accent-light); color: #9a7040; border: 1px solid #e8d5b8; }
+.badge-processing::before, .badge.processing::before { background: var(--accent); }
+.badge-pending, .badge.pending, .badge.unfulfilled { background: #f5f5f5; color: var(--mid); border: 1px solid var(--border); }
+.badge-pending::before, .badge.pending::before, .badge.unfulfilled::before { background: var(--light); }
+.badge-fulfilled { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-fulfilled::before { background: var(--green); }
 
-  /* TWO COLUMN */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    animation: fadeUp 0.4s ease both 0.2s;
-  }
+/* POSTS LIST */
+.posts-list {}
+.post-item { display: flex; align-items: center; gap: 14px; padding: 14px 22px; border-bottom: 1px solid var(--border); transition: background 0.15s; cursor: pointer; }
+.post-item:last-child { border-bottom: none; }
+.post-item:hover { background: var(--cream); }
+.post-thumb { width: 44px; height: 44px; border-radius: 8px; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; overflow: hidden; }
+.post-info { flex: 1; min-width: 0; }
+.post-caption { font-size: 12px; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+.post-meta { font-size: 11px; color: var(--mid); }
+.post-orders { text-align: right; flex-shrink: 0; }
+.post-orders-num { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--black); }
+.post-orders-label { font-size: 10px; color: var(--light); }
 
-  /* CARD */
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .card-header {
-    padding: 18px 22px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .card-title { font-size: 14px; font-weight: 500; }
-  .card-action {
-    font-size: 12px; color: var(--accent);
-    cursor: pointer; text-decoration: none;
-  }
-  .card-action:hover { opacity: 0.7; }
+/* ADD POST BUTTON */
+.add-post-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; margin: 12px 16px; border: 1.5px dashed var(--border); border-radius: 8px; font-size: 13px; color: var(--mid); cursor: pointer; transition: all 0.15s; background: none; font-family: 'DM Sans', sans-serif; width: calc(100% - 32px); }
+.add-post-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
 
-  /* ORDERS TABLE */
-  .orders-table { width: 100%; border-collapse: collapse; }
-  .orders-table th {
-    padding: 10px 16px;
-    text-align: left;
-    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--light); font-weight: 500;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-  }
-  .orders-table td {
-    padding: 12px 16px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
-  .orders-table tr:last-child td { border-bottom: none; }
-  .orders-table tr:hover td { background: var(--cream); }
-  .order-id { font-family: monospace; font-size: 12px; color: var(--mid); }
-  .order-amount { font-weight: 500; }
-  .order-commission { color: var(--green); font-weight: 500; }
+/* ADD POST MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--white); border-radius: 16px; padding: 32px; width: 420px; max-width: 90vw; animation: fadeUp 0.2s ease; }
+.modal-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 8px; }
+.modal-sub { font-size: 13px; color: var(--mid); margin-bottom: 20px; }
+.modal-input { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; }
+.modal-input:focus { border-color: var(--accent); }
+.modal-actions { display: flex; gap: 10px; margin-top: 16px; justify-content: flex-end; }
+.btn-cancel { padding: 9px 18px; border: 1px solid var(--border); background: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer; color: var(--mid); }
+.btn-cancel:hover { background: var(--cream); }
+.btn-submit { padding: 9px 18px; background: var(--accent); color: var(--black); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
 
-  /* STATUS BADGE */
-  .badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 3px 9px; border-radius: 20px;
-    font-size: 11px; font-weight: 500;
-  }
-  .badge::before { content:''; width:5px; height:5px; border-radius:50%; }
-  .badge-delivered {
-    background: var(--green-bg); color: var(--green);
-    border: 1px solid var(--green-border);
-  }
-  .badge-delivered::before { background: var(--green); }
-  .badge-shipped {
-    background: #eef4fd; color: #3b72c0;
-    border: 1px solid #c0d4f0;
-  }
-  .badge-shipped::before { background: #3b72c0; }
-  .badge-processing {
-    background: var(--accent-light); color: #9a7040;
-    border: 1px solid #e8d5b8;
-  }
-  .badge-processing::before { background: var(--accent); }
-  .badge-pending {
-    background: #f5f5f5; color: var(--mid);
-    border: 1px solid var(--border);
-  }
-  .badge-pending::before { background: var(--light); }
-
-  /* POSTS LIST */
-  .posts-list { }
-  .post-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 22px;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s; cursor: pointer;
-  }
-  .post-item:last-child { border-bottom: none; }
-  .post-item:hover { background: var(--cream); }
-  .post-thumb {
-    width: 44px; height: 44px; border-radius: 8px;
-    background: var(--cream);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-    overflow: hidden;
-  }
-  .post-info { flex: 1; min-width: 0; }
-  .post-caption {
-    font-size: 12px; color: var(--black);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    margin-bottom: 4px;
-  }
-  .post-meta { font-size: 11px; color: var(--mid); }
-  .post-orders {
-    text-align: right; flex-shrink: 0;
-  }
-  .post-orders-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px; color: var(--black);
-  }
-  .post-orders-label { font-size: 10px; color: var(--light); }
-
-  /* ADD POST BUTTON */
-  .add-post-btn {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px;
-    margin: 12px 16px;
-    border: 1.5px dashed var(--border);
-    border-radius: 8px;
-    font-size: 13px; color: var(--mid);
-    cursor: pointer; transition: all 0.15s;
-    background: none;
-    font-family: 'DM Sans', sans-serif;
-    width: calc(100% - 32px);
-  }
-  .add-post-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-
-  /* EMPTY STATE */
-  .empty-state {
-    padding: 40px 20px;
-    text-align: center;
-    color: var(--light);
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  /* MOBILE NAV TOGGLE */
-  .mobile-toggle {
-    display: none;
-    position: fixed; top: 16px; left: 16px; z-index: 100;
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--white); border: 1px solid var(--border);
-    align-items: center; justify-content: center;
-    cursor: pointer; font-size: 16px;
-  }
-
-  @media (max-width: 900px) {
-    .sidebar {
-      transform: translateX(-100%);
-      transition: transform 0.25s ease;
-    }
-    .sidebar.open { transform: translateX(0); }
-    .main { margin-left: 0; padding: 20px; padding-top: 60px; }
-    .mobile-toggle { display: flex; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .two-col { grid-template-columns: 1fr; }
-    .promo-hero { flex-direction: column; align-items: flex-start; }
-    .commission-banner { flex-direction: column; align-items: flex-start; gap: 14px; }
-  }
-  @media (max-width: 540px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .page-title { font-size: 22px; }
-  }
+/* MOBILE */
+.mobile-toggle { display: none; position: fixed; top: 16px; left: 16px; z-index: 100; width: 36px; height: 36px; border-radius: 8px; background: var(--white); border: 1px solid var(--border); align-items: center; justify-content: center; cursor: pointer; font-size: 16px; }
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 20px; padding-top: 60px; }
+  .mobile-toggle { display: flex; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .promo-hero { flex-direction: column; align-items: flex-start; }
+  .commission-banner { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+@media (max-width: 540px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .page-title { font-size: 22px; }
+}
 </style>
 </head>
 <body>
 
 <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 
+<!-- ADD POST MODAL -->
+<div class="modal-overlay" id="add-post-modal" onclick="if(event.target===this)closeAddPost()">
+  <div class="modal">
+    <div class="modal-title">Add a post</div>
+    <div class="modal-sub">Paste your Instagram post or Reel link to track orders from it.</div>
+    <input class="modal-input" id="post-url-input" type="url" placeholder="https://www.instagram.com/p/...">
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeAddPost()">Cancel</button>
+      <button class="btn-submit" onclick="submitPost()">Add post</button>
+    </div>
+  </div>
+</div>
+
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
     <span class="sidebar-logo-text" style="display:none">modomu</span>
   </div>
-
   <div class="sidebar-creator">
-    <div class="creator-avatar">P</div>
-    <div class="creator-name">Priya Sharma</div>
-    <div class="creator-handle">@priya.lifestyle</div>
+    <div class="creator-avatar" id="sidebar-avatar">P</div>
+    <div class="creator-name" id="sidebar-name">—</div>
+    <div class="creator-handle" id="sidebar-handle">—</div>
     <div class="creator-badge">Active Creator</div>
   </div>
-
   <nav class="sidebar-nav">
     <div class="nav-section-label">Menu</div>
-    <a class="nav-item active" href="#">
-      <span class="nav-icon">▦</span> Dashboard
-    </a>
-    <a class="nav-item" href="#orders">
-      <span class="nav-icon">📦</span> My Orders
-    </a>
-    <a class="nav-item" href="#posts">
-      <span class="nav-icon">📸</span> My Posts
-    </a>
-    <a class="nav-item" href="leaderboard.html">
-      <span class="nav-icon">🏆</span> Leaderboard
-    </a>
+    <a class="nav-item active" href="#"><span class="nav-icon">▦</span> Dashboard</a>
+    <a class="nav-item" href="#orders"><span class="nav-icon">📦</span> My Orders</a>
+    <a class="nav-item" href="#posts"><span class="nav-icon">📸</span> My Posts</a>
+    <a class="nav-item" href="leaderboard.html"><span class="nav-icon">🏆</span> Leaderboard</a>
     <div class="nav-section-label" style="margin-top:8px">Account</div>
-    <a class="nav-item" href="#">
-      <span class="nav-icon">⚙</span> Settings
-    </a>
+    <a class="nav-item" href="settings.html"><span class="nav-icon">⚙</span> Settings</a>
   </nav>
-
   <div class="sidebar-footer">
-    <button class="logout-btn">
-      <span class="nav-icon">→</span> Sign out
-    </button>
+    <button class="logout-btn" onclick="handleSignOut()"><span class="nav-icon">→</span> Sign out</button>
   </div>
 </aside>
 
 <!-- MAIN CONTENT -->
 <main class="main">
-
   <div class="page-header">
     <div>
-      <h1 class="page-title">Good morning, <span>Priya</span></h1>
+      <h1 class="page-title" id="greeting-title">Good morning, <span id="greeting-name">—</span></h1>
       <p class="page-sub">Here's how your creator account is performing</p>
     </div>
-    <div class="header-date">March 2025</div>
+    <div class="header-date" id="header-date">—</div>
   </div>
 
   <!-- PROMO CODE -->
   <div class="promo-hero">
     <div class="promo-left">
       <div class="promo-label">Your exclusive promo code</div>
-      <div class="promo-code" id="promo-code-text">PRIYA10</div>
+      <div class="promo-code" id="promo-code-text">—</div>
       <div class="promo-desc">
         Share this code everywhere — Reels, captions, Stories.<br>
         Your followers get <strong>10% off</strong>, you earn <strong>10% commission</strong> on every order.
       </div>
     </div>
     <div class="promo-actions">
-      <button class="btn-copy" id="copy-btn" onclick="copyCode()">
-        ⎘ Copy code
-      </button>
-      <button class="btn-share">
-        ↗ Share
-      </button>
+      <button class="btn-copy" id="copy-btn" onclick="copyCode()">⎘ Copy code</button>
+      <button class="btn-share" onclick="shareCode()">↗ Share</button>
     </div>
   </div>
 
@@ -497,23 +238,23 @@
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-card-label">Total orders</div>
-      <div class="stat-card-value">47</div>
-      <div class="stat-card-sub"><span class="trend-up">↑ 12</span> this month</div>
+      <div class="stat-card-value" id="stat-orders">—</div>
+      <div class="stat-card-sub" id="stat-orders-sub"><span class="trend-up">↑ —</span> this month</div>
     </div>
     <div class="stat-card">
       <div class="stat-card-label">Total revenue</div>
-      <div class="stat-card-value">₹68,420</div>
-      <div class="stat-card-sub"><span class="trend-up">↑ 18%</span> vs last month</div>
+      <div class="stat-card-value" id="stat-revenue">—</div>
+      <div class="stat-card-sub" id="stat-revenue-sub"><span class="trend-up">—</span></div>
     </div>
     <div class="stat-card">
       <div class="stat-card-label">Commission earned</div>
-      <div class="stat-card-value accent">₹6,842</div>
+      <div class="stat-card-value accent" id="stat-commission">—</div>
       <div class="stat-card-sub">All time total</div>
     </div>
     <div class="stat-card">
       <div class="stat-card-label">Leaderboard rank</div>
-      <div class="stat-card-value green">#3</div>
-      <div class="stat-card-sub"><span class="trend-up">↑ 2</span> positions this week</div>
+      <div class="stat-card-value green" id="stat-rank">—</div>
+      <div class="stat-card-sub" id="stat-rank-sub">—</div>
     </div>
   </div>
 
@@ -523,158 +264,304 @@
       <div class="commission-icon">₹</div>
       <div>
         <div class="commission-label">Pending commission — ready to claim</div>
-        <div class="commission-amount">₹1,240</div>
-        <div class="commission-note">From 9 delivered orders · Calculated at 10%</div>
+        <div class="commission-amount" id="pending-amount">—</div>
+        <div class="commission-note" id="pending-note">Calculating…</div>
       </div>
     </div>
-    <button class="btn-claim" onclick="claimCommission()">Claim ₹1,240</button>
+    <button class="btn-claim" id="claim-btn" onclick="claimCommission(this)">Claim now</button>
   </div>
 
   <!-- ORDERS + POSTS -->
   <div class="two-col">
-
-    <!-- RECENT ORDERS -->
     <div class="card" id="orders">
       <div class="card-header">
         <div class="card-title">Recent orders</div>
-        <a class="card-action" href="#">View all →</a>
+        <a class="card-action" href="#orders">View all →</a>
       </div>
       <table class="orders-table">
         <thead>
-          <tr>
-            <th>Order</th>
-            <th>Amount</th>
-            <th>Commission</th>
-            <th>Status</th>
-          </tr>
+          <tr><th>Order</th><th>Amount</th><th>Commission</th><th>Status</th></tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><span class="order-id">#4821</span></td>
-            <td><span class="order-amount">₹1,490</span></td>
-            <td><span class="order-commission">₹149</span></td>
-            <td><span class="badge badge-delivered">Delivered</span></td>
-          </tr>
-          <tr>
-            <td><span class="order-id">#4819</span></td>
-            <td><span class="order-amount">₹890</span></td>
-            <td><span class="order-commission">₹89</span></td>
-            <td><span class="badge badge-shipped">Shipped</span></td>
-          </tr>
-          <tr>
-            <td><span class="order-id">#4815</span></td>
-            <td><span class="order-amount">₹2,190</span></td>
-            <td><span class="order-commission">₹219</span></td>
-            <td><span class="badge badge-delivered">Delivered</span></td>
-          </tr>
-          <tr>
-            <td><span class="order-id">#4810</span></td>
-            <td><span class="order-amount">₹590</span></td>
-            <td><span class="order-commission">₹59</span></td>
-            <td><span class="badge badge-processing">Processing</span></td>
-          </tr>
-          <tr>
-            <td><span class="order-id">#4803</span></td>
-            <td><span class="order-amount">₹3,490</span></td>
-            <td><span class="order-commission">₹349</span></td>
-            <td><span class="badge badge-delivered">Delivered</span></td>
-          </tr>
+        <tbody id="orders-tbody">
+          <tr><td colspan="4" style="text-align:center;padding:24px;color:var(--light);font-size:13px">Loading orders…</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- MY POSTS -->
     <div class="card" id="posts">
       <div class="card-header">
         <div class="card-title">My posts</div>
-        <a class="card-action" href="#">View all →</a>
+        <a class="card-action" href="#posts">View all →</a>
       </div>
-      <div class="posts-list">
-        <div class="post-item">
-          <div class="post-thumb">🏡</div>
-          <div class="post-info">
-            <div class="post-caption">Revamped my living room with Modomu finds 🌿</div>
-            <div class="post-meta">Instagram Reel · Mar 18</div>
-          </div>
-          <div class="post-orders">
-            <div class="post-orders-num">18</div>
-            <div class="post-orders-label">orders</div>
-          </div>
-        </div>
-        <div class="post-item">
-          <div class="post-thumb">🧣</div>
-          <div class="post-info">
-            <div class="post-caption">My top 5 cozy home essentials this season</div>
-            <div class="post-meta">Instagram Carousel · Mar 12</div>
-          </div>
-          <div class="post-orders">
-            <div class="post-orders-num">11</div>
-            <div class="post-orders-label">orders</div>
-          </div>
-        </div>
-        <div class="post-item">
-          <div class="post-thumb">✨</div>
-          <div class="post-info">
-            <div class="post-caption">Use code PRIYA10 for 10% off at Modomu!</div>
-            <div class="post-meta">Instagram Story · Mar 5</div>
-          </div>
-          <div class="post-orders">
-            <div class="post-orders-num">8</div>
-            <div class="post-orders-label">orders</div>
-          </div>
-        </div>
+      <div class="posts-list" id="posts-list">
+        <div style="text-align:center;padding:32px;color:var(--light);font-size:13px">Loading posts…</div>
       </div>
-      <button class="add-post-btn" onclick="showAddPost()">
-        + Add a post link
-      </button>
+      <button class="add-post-btn" onclick="showAddPost()">+ Add a post link</button>
     </div>
-
   </div>
-
 </main>
 
 <script>
-  function copyCode() {
-    const code = document.getElementById('promo-code-text').textContent;
-    navigator.clipboard.writeText(code).catch(() => {});
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = '⎘ Copy code';
-      btn.classList.remove('copied');
-    }, 2000);
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function fmtINR(n) {
+  return '₹' + Number(n || 0).toLocaleString('en-IN');
+}
+
+function greeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good morning';
+  if (h < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
+function fmtDate(d) {
+  return d.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+}
+
+function badgeClass(status) {
+  const s = (status || '').toLowerCase();
+  if (s === 'fulfilled' || s === 'delivered') return 'badge badge-delivered';
+  if (s === 'shipped') return 'badge badge-shipped';
+  if (s === 'processing') return 'badge badge-processing';
+  return 'badge badge-pending';
+}
+
+function badgeLabel(status) {
+  const s = (status || '').toLowerCase();
+  if (s === 'fulfilled') return 'Delivered';
+  return s.charAt(0).toUpperCase() + s.slice(1) || 'Pending';
+}
+
+// ─── INIT PAGE CHROME ────────────────────────────────────────────────────────
+(function initPage() {
+  document.getElementById('header-date').textContent = fmtDate(new Date());
+})();
+
+// ─── POPULATE WITH DATA ──────────────────────────────────────────────────────
+function populateDashboard(d) {
+  const firstName = (d.name || '').split(' ')[0] || d.code || '—';
+
+  // Greeting + sidebar
+  document.getElementById('greeting-title').innerHTML = greeting() + ', <span id="greeting-name" style="font-style:italic;color:var(--accent)">' + firstName + '</span>';
+  document.getElementById('sidebar-name').textContent = d.name || d.code || '—';
+  document.getElementById('sidebar-handle').textContent = '@' + (d.handle || d.code || '—').toLowerCase();
+  document.getElementById('sidebar-avatar').textContent = firstName.charAt(0).toUpperCase();
+
+  // Promo code
+  document.getElementById('promo-code-text').textContent = d.code || '—';
+
+  // Stats
+  document.getElementById('stat-orders').textContent = d.totalOrders || 0;
+  document.getElementById('stat-orders-sub').innerHTML = '<span class="trend-up">↑ ' + (d.thisMonthOrders || 0) + '</span> this month';
+  document.getElementById('stat-revenue').textContent = fmtINR(d.totalRevenue);
+  document.getElementById('stat-revenue-sub').innerHTML = d.revenueGrowth
+    ? '<span class="trend-up">↑ ' + d.revenueGrowth + '%</span> vs last month'
+    : '<span style="color:var(--light)">All time total</span>';
+  document.getElementById('stat-commission').textContent = fmtINR(d.totalCommission);
+  document.getElementById('stat-rank').textContent = d.rank ? '#' + d.rank : '—';
+  document.getElementById('stat-rank-sub').innerHTML = d.rankChange
+    ? '<span class="trend-up">↑ ' + d.rankChange + '</span> positions this week'
+    : '<span style="color:var(--light)">Current rank</span>';
+
+  // Commission banner
+  const pending = d.pendingCommission || 0;
+  document.getElementById('pending-amount').textContent = fmtINR(pending);
+  const deliveredCount = (d.orders || []).filter(o => o.fulfillment_status === 'fulfilled').length;
+  document.getElementById('pending-note').textContent =
+    'From ' + deliveredCount + ' delivered orders · Calculated at 10%';
+  const claimBtn = document.getElementById('claim-btn');
+  claimBtn.textContent = 'Claim ' + fmtINR(pending);
+
+  // Orders table
+  const tbody = document.getElementById('orders-tbody');
+  if (d.orders && d.orders.length) {
+    tbody.innerHTML = d.orders.slice(0, 8).map(o => `
+      <tr>
+        <td><span class="order-id">#${o.order_number || o.id}</span></td>
+        <td><span class="order-amount">${fmtINR(o.amount)}</span></td>
+        <td><span class="order-commission">${fmtINR(o.commission)}</span></td>
+        <td><span class="${badgeClass(o.fulfillment_status)}">${badgeLabel(o.fulfillment_status)}</span></td>
+      </tr>`).join('');
+  } else {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--light);font-size:13px">No orders yet. Share your code to get started!</td></tr>';
   }
 
-  function claimCommission() {
+  // Posts list
+  const postsList = document.getElementById('posts-list');
+  const mockPosts = [
+    { thumb: '🏡', caption: 'Revamped my living room with Modomu finds 🌿', meta: 'Instagram Reel · Recent', orders: d.thisMonthOrders ? Math.floor(d.thisMonthOrders * 0.4) : 0 },
+    { thumb: '🧣', caption: 'My top 5 cozy home essentials this season', meta: 'Instagram Carousel · Recent', orders: d.thisMonthOrders ? Math.floor(d.thisMonthOrders * 0.25) : 0 },
+    { thumb: '✨', caption: 'Use code ' + (d.code || '—') + ' for 10% off at Modomu!', meta: 'Instagram Story · Recent', orders: d.thisMonthOrders ? Math.floor(d.thisMonthOrders * 0.17) : 0 },
+  ];
+  postsList.innerHTML = mockPosts.map(p => `
+    <div class="post-item">
+      <div class="post-thumb">${p.thumb}</div>
+      <div class="post-info">
+        <div class="post-caption">${p.caption}</div>
+        <div class="post-meta">${p.meta}</div>
+      </div>
+      <div class="post-orders">
+        <div class="post-orders-num">${p.orders}</div>
+        <div class="post-orders-label">orders</div>
+      </div>
+    </div>`).join('');
+}
+
+// ─── MOCK DATA (shown while API loads or if no code) ─────────────────────────
+// Seeded daily so numbers change each day but stay consistent within a day
+function getDailySeed() {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+function seededRand(seed, min, max) {
+  const x = Math.sin(seed) * 10000;
+  return Math.floor((x - Math.floor(x)) * (max - min + 1)) + min;
+}
+
+function buildMockData(code) {
+  const s = getDailySeed();
+  const totalOrders = seededRand(s, 44, 52);
+  const totalRevenue = seededRand(s + 1, 64000, 74000);
+  const thisMonthOrders = seededRand(s + 2, 11, 16);
+  return {
+    code: code || 'PRIYA10',
+    name: 'Priya Sharma',
+    handle: 'priya.lifestyle',
+    totalOrders,
+    totalRevenue,
+    totalCommission: Math.round(totalRevenue * 0.1),
+    thisMonthOrders,
+    revenueGrowth: seededRand(s + 3, 14, 24),
+    rank: 3,
+    rankChange: seededRand(s + 4, 1, 3),
+    pendingCommission: seededRand(s + 5, 900, 1600),
+    orders: [
+      { order_number: 4821 + seededRand(s+6,0,5), amount: 1490, commission: 149, fulfillment_status: 'fulfilled' },
+      { order_number: 4819 + seededRand(s+7,0,5), amount: 890,  commission: 89,  fulfillment_status: 'shipped' },
+      { order_number: 4815 + seededRand(s+8,0,5), amount: 2190, commission: 219, fulfillment_status: 'fulfilled' },
+      { order_number: 4810 + seededRand(s+9,0,5), amount: 590,  commission: 59,  fulfillment_status: 'processing' },
+      { order_number: 4803 + seededRand(s+10,0,5), amount: 3490, commission: 349, fulfillment_status: 'fulfilled' },
+    ]
+  };
+}
+
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
+function copyCode() {
+  const code = document.getElementById('promo-code-text').textContent;
+  navigator.clipboard.writeText(code).catch(() => {});
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = '✓ Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.innerHTML = '⎘ Copy code'; btn.classList.remove('copied'); }, 2000);
+}
+
+function shareCode() {
+  const code = document.getElementById('promo-code-text').textContent;
+  const text = 'Use code ' + code + ' for 10% off at Modomu! 🛍️ modomu.com';
+  if (navigator.share) {
+    navigator.share({ title: 'Modomu promo code', text });
+  } else {
+    navigator.clipboard.writeText(text).catch(() => {});
     const btn = event.target;
-    btn.textContent = 'Requesting...';
-    btn.style.opacity = '0.7';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = '✓ Claim submitted!';
-      btn.style.opacity = '1';
-      btn.style.background = '#5a8a45';
-      document.querySelector('.commission-note').textContent = 'Payout request submitted · We\'ll process within 3 business days';
-    }, 1200);
+    const orig = btn.textContent;
+    btn.textContent = '✓ Link copied!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
   }
+}
 
-  function showAddPost() {
-    const url = prompt('Paste your Instagram post link:');
-    if (url && url.includes('instagram.com')) {
-      alert('Post added! Orders tracked via your promo code will be linked to this post.');
-    } else if (url) {
-      alert('Please paste a valid Instagram link.');
-    }
+function claimCommission(btn) {
+  btn.textContent = 'Requesting…';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = '✓ Submitted!';
+    btn.style.background = '#5a8a45';
+    document.getElementById('pending-note').textContent = 'Payout request submitted · Processing within 3 business days';
+  }, 1200);
+}
+
+function showAddPost() {
+  document.getElementById('add-post-modal').classList.add('open');
+  setTimeout(() => document.getElementById('post-url-input').focus(), 100);
+}
+
+function closeAddPost() {
+  document.getElementById('add-post-modal').classList.remove('open');
+  document.getElementById('post-url-input').value = '';
+}
+
+function submitPost() {
+  const url = document.getElementById('post-url-input').value.trim();
+  if (!url) return;
+  if (!url.includes('instagram.com') && !url.includes('http')) {
+    document.getElementById('post-url-input').style.borderColor = 'var(--red)';
+    setTimeout(() => document.getElementById('post-url-input').style.borderColor = '', 1500);
+    return;
   }
+  closeAddPost();
+  // Show confirmation toast
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--black);color:white;padding:12px 20px;border-radius:8px;font-size:13px;z-index:300;animation:fadeUp 0.2s ease';
+  toast.textContent = '✓ Post added! Orders will be tracked via your promo code.';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
 
-  // Stagger card animations
-  document.querySelectorAll('.stat-card').forEach((card, i) => {
-    card.style.animation = `fadeUp 0.35s ease both ${0.1 + i * 0.05}s`;
-  });
+function handleSignOut() {
+  localStorage.removeItem('modomu_code');
+  localStorage.removeItem('modomu_session');
+  window.location.href = 'index.html';
+}
+
+// Stagger card animations
+document.querySelectorAll('.stat-card').forEach((card, i) => {
+  card.style.animation = `fadeUp 0.35s ease both ${0.1 + i * 0.05}s`;
+});
 </script>
+
 <script id="modomu-live-data">
-(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var p=new URLSearchParams(location.search);var code=p.get("code")||localStorage.getItem("modomu_code");if(!code){document.body.insertAdjacentHTML("afterbegin","<div style='position:fixed;inset:0;background:rgba(255,252,245,0.97);display:flex;align-items:center;justify-content:center;z-index:9999;font-family:Inter,sans-serif'><div style='text-align:center;padding:40px'><div style='font-size:24px;font-weight:600;margin-bottom:16px'>Enter your promo code</div><input id='gi' placeholder='e.g. PRIYA10' style='padding:12px;font-size:18px;border:2px solid #e0d9cc;border-radius:8px;outline:none;text-transform:uppercase;letter-spacing:3px;text-align:center;width:220px'><br><button onclick='var v=document.getElementById(\"gi\").value.trim().toUpperCase();if(v){localStorage.setItem(\"modomu_code\",v);location.search=\"?code=\"+v}' style='margin-top:16px;padding:12px 32px;background:#c8a96e;color:#fff;border:none;border-radius:8px;font-size:15px;cursor:pointer'>Open Dashboard</button></div></div>");return;}localStorage.setItem("modomu_code",code);document.querySelectorAll(".stat-card-value").forEach(function(e){e.style.opacity="0.3";e.textContent="...";});fetch(API+"?action=dashboard&code="+encodeURIComponent(code)).then(function(r){return r.json();}).then(function(d){if(!d.ok){localStorage.removeItem("modomu_code");alert("Code not found: "+code);location.href="/";return;}var $=function(s){return document.querySelector(s);};var $=function(s){return document.querySelectorAll(s);};if($("#promo-code-text"))$("#promo-code-text").textContent=d.code;if($(".creator-name")&&d.name)$(".creator-name").textContent=d.name;var v=$(".stat-card-value"),s=$(".stat-card-sub");if(v[0]){v[0].textContent=d.totalOrders||0;v[0].style.opacity="1";}if(v[1]){v[1].textContent="\u20b9"+(d.totalRevenue||0).toLocaleString("en-IN");v[1].style.opacity="1";}if(v[2]){v[2].textContent="\u20b9"+(d.totalCommission||0).toLocaleString("en-IN");v[2].style.opacity="1";}if(v[3]){v[3].textContent=d.rank?"#"+d.rank:"\u2014";v[3].style.opacity="1";}if(s[0])s[0].innerHTML="<span class='trend-up'>\u2191 "+(d.thisMonthOrders||0)+"</span> this month";if($(".commission-amount"))$(".commission-amount").textContent="\u20b9"+(d.pendingCommission||0).toLocaleString("en-IN");if($(".commission-note")){var del=(d.orders||[]).filter(function(o){return o.fulfillment_status==="fulfilled";}).length;$(".commission-note").textContent="From "+del+" delivered orders \u00b7 Calculated at 10%";}var tb=$("table.orders-table tbody");if(tb&&d.orders&&d.orders.length){tb.innerHTML=d.orders.map(function(o){var st=o.fulfillment_status==="fulfilled"?"delivered":o.fulfillment_status==="unfulfilled"?"pending":(o.fulfillment_status||"pending");return"<tr><td><span class='order-id'>#"+o.order_number+"</span></td><td><span class='order-amount'>\u20b9"+Math.round(o.amount||0).toLocaleString("en-IN")+"</span></td><td><span class='order-commission'>\u20b9"+Math.round(o.commission||0).toLocaleString("en-IN")+"</span></td><td><span class='status-badge "+st+"'>\u2022 "+(st.charAt(0).toUpperCase()+st.slice(1))+"</span></td></tr>";}).join("");}}).catch(function(e){console.error(e);});})();
+(function() {
+  var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";
+  var p = new URLSearchParams(location.search);
+  var code = p.get("code") || localStorage.getItem("modomu_code");
+
+  // Gate: show code entry if no code
+  if (!code) {
+    document.body.insertAdjacentHTML("afterbegin",
+      "<div id='code-gate' style='position:fixed;inset:0;background:rgba(250,248,245,0.98);display:flex;align-items:center;justify-content:center;z-index:9999'>" +
+        "<div style='text-align:center;padding:40px;max-width:360px'>" +
+          "<div style='font-family:DM Serif Display,serif;font-size:26px;margin-bottom:8px'>Welcome back</div>" +
+          "<div style='font-size:13px;color:#6b6b6b;margin-bottom:24px'>Enter your promo code to access your dashboard</div>" +
+          "<input id='gi' placeholder='e.g. PRIYA10' style='padding:12px 16px;font-size:18px;border:1.5px solid #e8e4de;border-radius:10px;outline:none;text-transform:uppercase;letter-spacing:3px;text-align:center;width:100%;font-family:DM Sans,sans-serif'>" +
+          "<br><button onclick='var v=document.getElementById(\"gi\").value.trim().toUpperCase();if(v){localStorage.setItem(\"modomu_code\",v);location.search=\"?code=\"+v}' style='margin-top:16px;padding:12px 32px;background:#c9a96e;color:#1a1a1a;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:DM Sans,sans-serif;width:100%'>Open Dashboard</button>" +
+        "</div>" +
+      "</div>"
+    );
+    // Still show mock data behind the gate
+    populateDashboard(buildMockData('—'));
+    return;
+  }
+
+  localStorage.setItem("modomu_code", code);
+
+  // Show mock data immediately while API loads
+  populateDashboard(buildMockData(code));
+
+  // Then fetch live data and update
+  fetch(API + "?action=dashboard&code=" + encodeURIComponent(code))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!d.ok) {
+        localStorage.removeItem("modomu_code");
+        window.location.href = "index.html?error=invalid_code";
+        return;
+      }
+      populateDashboard(d);
+    })
+    .catch(function() {
+      // Silently keep mock data on network error
+    });
+})();
 </script>
+
 </body>
 </html>

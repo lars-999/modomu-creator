@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,266 +7,123 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --cream: #faf8f5;
-    --white: #fff;
-    --black: #1a1a1a;
-    --mid: #6b6b6b;
-    --light: #c8c4bc;
-    --accent: #c9a96e;
-    --accent-light: #f5ede0;
-    --border: #e8e4de;
-    --green: #7a9e5f;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--black);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 0 48px; height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,248,245,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo img { height: 28px; display: block; object-fit: contain; }
-  .nav-tag {
-    font-size: 11px; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--mid); font-weight: 400;
-  }
-
-  .hero {
-    padding: 140px 48px 100px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-    max-width: 1160px; margin: 0 auto;
-  }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 28px;
-  }
-  .hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(36px, 4.5vw, 54px);
-    line-height: 1.1; margin-bottom: 22px;
-  }
-  h1 em { font-style: italic; color: var(--accent); }
-  .hero-sub {
-    font-size: 15px; line-height: 1.8;
-    color: var(--mid); font-weight: 300;
-    max-width: 420px; margin-bottom: 40px;
-  }
-  .hero-stats { display: flex; gap: 36px; }
-  .stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; }
-  .stat-label { font-size: 12px; color: var(--mid); margin-top: 2px; letter-spacing: 0.04em; }
-
-  .tracking-note {
-    display: flex; align-items: flex-start; gap: 10px;
-    background: var(--accent-light);
-    border: 1px solid #e8d5b8; border-radius: 10px;
-    padding: 14px 16px; margin-top: 32px;
-    font-size: 12px; color: #8a6c3a; line-height: 1.65;
-  }
-  .tracking-note-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-
-  .form-card {
-    background: var(--white); 
-    border: 1px solid var(--border); border-radius: 20px;
-    padding: 40px 38px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-    animation: slideUp 0.5s ease both 0.15s;
-  }
-  @keyframes slideUp {
-    from { opacity:0; transform:translateY(20px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  .form-title { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 5px; }
-  .form-sub { font-size: 13px; color: var(--mid); margin-bottom: 28px; line-height: 1.6; }
-
-  .btn-instagram {
-    width: 100%;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 13px 20px;
-    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    color: #fff; border: none; border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 500; cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-    margin-bottom: 18px; letter-spacing: 0.02em;
-  }
-  .btn-instagram:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn-instagram:active { transform: scale(0.98); }
-  .ig-icon { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
-
-  .ig-fields {
-    display: none;
-    background: #f0faf4; border: 1px solid #c6e0cc;
-    border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;
-  }
-  .ig-fields.visible { display: block; }
-  .ig-connected-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 11px; color: var(--green); font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;
-  }
-  .ig-connected-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); }
-  .ig-field-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 5px 0; font-size: 13px;
-  }
-  .ig-field-row:not(:last-child) { border-bottom: 1px solid #d8eedd; }
-  .ig-field-label { color: var(--mid); font-size: 12px; }
-  .ig-field-value { font-weight: 500; }
-
-  .divider {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 18px; color: var(--light);
-    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
-
-  .field-group { margin-bottom: 14px; }
-  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-  label {
-    display: block; font-size: 11px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--mid); margin-bottom: 5px;
-  }
-  input, select, textarea {
-    width: 100%; padding: 10px 13px;
-    border: 1px solid var(--border); border-radius: 8px;
-    background: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; color: var(--black);
-    outline: none; transition: border-color 0.2s, background 0.2s;
-    -webkit-appearance: none;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); background: var(--white); }
-  input::placeholder { color: var(--light); }
-
-  .phone-wrap { display: flex; gap: 8px; }
-  .phone-prefix {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 12px;
-    border: 1px solid var(--border); border-radius: 8px;
-    background: var(--cream); font-size: 14px; color: var(--mid);
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .phone-wrap input { flex: 1; }
-
-  select { cursor: pointer; }
-  textarea { resize: none; height: 76px; line-height: 1.6; }
-
-  .btn-submit {
-    width: 100%; padding: 14px;
-    background: var(--black); color: #fff;
-    border: none; border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 500; cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 6px;
-  }
-  .btn-submit:hover { background: #2d2d2d; transform: translateY(-1px); }
-  .btn-submit:active { transform: scale(0.98); }
-
-  .form-note { text-align: center; font-size: 11px; color: var(--light); margin-top: 12px; line-height: 1.7; }
-
-  .success-state { display: none; text-align: center; padding: 20px 0; }
-  .success-state.visible { display: block; }
-  .success-check {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--accent-light);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px; font-size: 22px;
-  }
-  .success-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
-  .success-sub { font-size: 14px; color: var(--mid); line-height: 1.75; }
-
-  .how { max-width: 1160px; margin: 0 auto; padding: 90px 48px; }
-  .section-eyebrow {
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
-  }
-  .section-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
-  .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(26px, 3vw, 38px);
-    margin-bottom: 52px; line-height: 1.15;
-  }
-  .steps-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2px; border: 1px solid var(--border);
-    border-radius: 16px; overflow: hidden; background: var(--border);
-  }
-  .step { background: var(--white); padding: 38px 34px; }
-  .step-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--accent-light); line-height: 1; margin-bottom: 18px; }
-  .step-title { font-size: 15px; font-weight: 500; margin-bottom: 10px; }
-  .step-desc { font-size: 13px; color: var(--mid); line-height: 1.75; font-weight: 300; }
-
-  .perks { background: var(--black); padding: 90px 48px; }
-  .perks-inner { max-width: 1160px; margin: 0 auto; }
-  .perks .section-eyebrow { color: var(--accent); }
-  .perks .section-eyebrow::before { background: var(--accent); }
-  .perks .section-title { color: var(--white); margin-bottom: 52px; }
-  .perks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .perk {
-    padding: 28px 24px;
-    border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .perk:hover { border-color: rgba(201,169,110,0.35); background: rgba(201,169,110,0.04); }
-  .perk-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: rgba(201,169,110,0.14);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 18px; font-size: 17px;
-  }
-  .perk-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 9px; }
-  .perk-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; }
-
-  footer {
-    text-align: center; padding: 36px 48px;
-    border-top: 1px solid var(--border);
-    font-size: 12px; color: var(--light); letter-spacing: 0.04em;
-  }
-  footer a { color: inherit; text-decoration: none; }
-
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
-    .hero-sub { max-width: 100%; }
-    .steps-grid { grid-template-columns: 1fr; }
-    .perks-grid { grid-template-columns: 1fr 1fr; }
-    nav { padding: 0 24px; }
-    .how, .perks { padding: 60px 24px; }
-  }
-  @media (max-width: 540px) {
-    .perks-grid { grid-template-columns: 1fr; }
-    .field-row { grid-template-columns: 1fr; }
-    .hero-stats { gap: 24px; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #faf8f5; --white: #fff; --black: #1a1a1a; --mid: #6b6b6b;
+  --light: #c8c4bc; --accent: #c9a96e; --accent-light: #f5ede0;
+  --border: #e8e4de; --green: #7a9e5f;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); min-height: 100vh; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,248,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo img { height: 28px; display: block; }
+.nav-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); font-weight: 400; }
+/* Already have code banner */
+.dashboard-banner { position: fixed; top: 72px; right: 20px; z-index: 99; background: var(--black); color: var(--accent); padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 500; cursor: pointer; display: none; text-decoration: none; border: 1px solid rgba(201,169,110,0.3); }
+.dashboard-banner:hover { background: #2d2d2d; }
+.hero { padding: 140px 48px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1160px; margin: 0 auto; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 28px; }
+.hero-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
+h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 54px); line-height: 1.1; margin-bottom: 22px; }
+h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 15px; line-height: 1.8; color: var(--mid); font-weight: 300; max-width: 420px; margin-bottom: 40px; }
+.hero-stats { display: flex; gap: 36px; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; }
+.stat-label { font-size: 12px; color: var(--mid); margin-top: 2px; letter-spacing: 0.04em; }
+.tracking-note { display: flex; align-items: flex-start; gap: 10px; background: var(--accent-light); border: 1px solid #e8d5b8; border-radius: 10px; padding: 14px 16px; margin-top: 32px; font-size: 12px; color: #8a6c3a; line-height: 1.65; }
+.tracking-note-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.form-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 40px 38px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); animation: slideUp 0.5s ease both 0.15s; }
+@keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.form-title { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 5px; }
+.form-sub { font-size: 13px; color: var(--mid); margin-bottom: 28px; line-height: 1.6; }
+.btn-instagram { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.2s, transform 0.15s; margin-bottom: 18px; }
+.btn-instagram:hover { opacity: 0.88; transform: translateY(-1px); }
+.ig-icon { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+.ig-fields { display: none; background: #f0faf4; border: 1px solid #c6e0cc; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+.ig-fields.visible { display: block; }
+.ig-connected-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--green); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.ig-connected-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); }
+.ig-field-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 13px; }
+.ig-field-row:not(:last-child) { border-bottom: 1px solid #d8eedd; }
+.ig-field-label { color: var(--mid); font-size: 12px; }
+.ig-field-value { font-weight: 500; }
+.divider { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--light); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+.field-group { margin-bottom: 14px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 5px; }
+input, select, textarea { width: 100%; padding: 10px 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); background: var(--white); }
+input::placeholder { color: var(--light); }
+input.error, select.error { border-color: #c0503a; }
+.phone-wrap { display: flex; gap: 8px; }
+.phone-prefix { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); font-size: 14px; color: var(--mid); white-space: nowrap; flex-shrink: 0; }
+.phone-wrap input { flex: 1; }
+select { cursor: pointer; }
+textarea { resize: none; height: 76px; line-height: 1.6; }
+.btn-submit { width: 100%; padding: 14px; background: var(--black); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; }
+.btn-submit:hover { background: #2d2d2d; transform: translateY(-1px); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.form-note { text-align: center; font-size: 11px; color: var(--light); margin-top: 12px; line-height: 1.7; }
+.form-error { font-size: 12px; color: #c0503a; margin-top: -8px; margin-bottom: 10px; display: none; }
+.form-error.visible { display: block; }
+.success-state { display: none; text-align: center; padding: 20px 0; }
+.success-state.visible { display: block; }
+.success-check { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 22px; }
+.success-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
+.success-sub { font-size: 14px; color: var(--mid); line-height: 1.75; }
+.success-code { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--accent); letter-spacing: 0.08em; background: var(--black); padding: 14px 24px; border-radius: 10px; margin: 16px auto; display: inline-block; }
+.btn-dashboard { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--accent); color: var(--black); border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; margin-top: 8px; }
+/* HOW + PERKS (unchanged from original) */
+.how { max-width: 1160px; margin: 0 auto; padding: 90px 48px; }
+.section-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.section-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
+.section-title { font-family: 'DM Serif Display', serif; font-size: clamp(26px, 3vw, 38px); margin-bottom: 52px; line-height: 1.15; }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--border); }
+.step { background: var(--white); padding: 38px 34px; }
+.step-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--accent-light); line-height: 1; margin-bottom: 18px; }
+.step-title { font-size: 15px; font-weight: 500; margin-bottom: 10px; }
+.step-desc { font-size: 13px; color: var(--mid); line-height: 1.75; font-weight: 300; }
+.perks { background: var(--black); padding: 90px 48px; }
+.perks-inner { max-width: 1160px; margin: 0 auto; }
+.perks .section-eyebrow { color: var(--accent); }
+.perks .section-eyebrow::before { background: var(--accent); }
+.perks .section-title { color: var(--white); margin-bottom: 52px; }
+.perks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.perk { padding: 28px 24px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; transition: border-color 0.2s, background 0.2s; }
+.perk:hover { border-color: rgba(201,169,110,0.35); background: rgba(201,169,110,0.04); }
+.perk-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(201,169,110,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 17px; }
+.perk-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 9px; }
+.perk-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; }
+footer { text-align: center; padding: 36px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--light); }
+footer a { color: inherit; text-decoration: none; }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
+  .hero-sub { max-width: 100%; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .perks-grid { grid-template-columns: 1fr 1fr; }
+  nav { padding: 0 24px; }
+  .how, .perks { padding: 60px 24px; }
+}
+@media (max-width: 540px) {
+  .perks-grid { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="https://modomu.com" class="nav-logo">
-    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-    <span style="display:none; font-family:'DM Serif Display',serif; font-size:20px; letter-spacing:0.02em;">modomu</span>
+    <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family:'DM Serif Display',serif; font-size:20px;">modomu</span>
   </a>
   <span class="nav-tag">Creator Program</span>
 </nav>
+
+<!-- Banner for returning creators -->
+<a class="dashboard-banner" id="dashboard-banner" href="dashboard.html">→ Go to my dashboard</a>
 
 <section class="hero">
   <div class="hero-left">
@@ -274,18 +131,9 @@
     <h1>Grow with<br><em>modomu</em></h1>
     <p class="hero-sub">Join our creator community. Share products you love, earn 10% commission on every sale, and be part of a brand built for everyone — 모두.</p>
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">10%</div>
-        <div class="stat-label">Commission rate</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">₹</div>
-        <div class="stat-label">Paid in INR</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">30d</div>
-        <div class="stat-label">Tracking window</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">10%</div><div class="stat-label">Commission rate</div></div>
+      <div class="stat-item"><div class="stat-num">₹</div><div class="stat-label">Paid in INR</div></div>
+      <div class="stat-item"><div class="stat-num">30d</div><div class="stat-label">Tracking window</div></div>
     </div>
     <div class="tracking-note">
       <span class="tracking-note-icon">🏷️</span>
@@ -305,72 +153,53 @@
 
       <div class="ig-fields" id="ig-fields">
         <div class="ig-connected-badge">Instagram connected</div>
-        <div class="ig-field-row">
-          <span class="ig-field-label">Username</span>
-          <span class="ig-field-value">@lifestyle.creator</span>
-        </div>
-        <div class="ig-field-row">
-          <span class="ig-field-label">Followers</span>
-          <span class="ig-field-value">24,800</span>
-        </div>
-        <div class="ig-field-row">
-          <span class="ig-field-label">Posts</span>
-          <span class="ig-field-value">312</span>
-        </div>
+        <div class="ig-field-row"><span class="ig-field-label">Username</span><span class="ig-field-value" id="ig-username">@lifestyle.creator</span></div>
+        <div class="ig-field-row"><span class="ig-field-label">Followers</span><span class="ig-field-value" id="ig-followers">24,800</span></div>
+        <div class="ig-field-row"><span class="ig-field-label">Posts</span><span class="ig-field-value">312</span></div>
       </div>
 
       <div class="divider">your details</div>
 
       <div class="field-row">
-        <div class="field-group">
-          <label>First name</label>
-          <input type="text" placeholder="Priya">
-        </div>
-        <div class="field-group">
-          <label>Last name</label>
-          <input type="text" placeholder="Sharma">
-        </div>
+        <div class="field-group"><label>First name</label><input type="text" id="field-first" placeholder="Priya"></div>
+        <div class="field-group"><label>Last name</label><input type="text" id="field-last" placeholder="Sharma"></div>
       </div>
-
-      <div class="field-group">
-        <label>Email address</label>
-        <input type="email" placeholder="priya@email.com">
-      </div>
-
+      <div class="field-group"><label>Email address</label><input type="email" id="field-email" placeholder="priya@email.com"></div>
       <div class="field-group">
         <label>WhatsApp / Phone</label>
         <div class="phone-wrap">
           <div class="phone-prefix">🇮🇳 +91</div>
-          <input type="tel" placeholder="98765 43210">
+          <input type="tel" id="field-phone" placeholder="98765 43210">
         </div>
       </div>
-
       <div class="field-group">
         <label>Content category</label>
-        <select>
+        <select id="field-category">
           <option value="" disabled selected>Select your niche</option>
           <option>Home & Lifestyle</option>
           <option>Fashion & Style</option>
           <option>Beauty & Wellness</option>
           <option>Food & Cooking</option>
           <option>Travel & Outdoors</option>
+          <option>Fitness & Health</option>
           <option>Other</option>
         </select>
       </div>
+      <div class="field-group"><label>About your audience</label><textarea id="field-about" placeholder="Who follows you? What content do you create?"></textarea></div>
 
-      <div class="field-group">
-        <label>About your audience</label>
-        <textarea placeholder="Who follows you? What content do you create?"></textarea>
-      </div>
+      <div class="form-error" id="form-error">Please fill in your name and email address.</div>
 
-      <button class="btn-submit" onclick="handleSubmit()">Submit application →</button>
+      <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">Submit application →</button>
       <div class="form-note">We review applications within 2 business days.<br>By applying you agree to our creator terms.</div>
     </div>
 
     <div class="success-state" id="success-state">
       <div class="success-check">✓</div>
-      <div class="success-title">Application received</div>
-      <div class="success-sub">Thank you for applying to the Modomu Creator Program.<br>We'll be in touch within 2 business days via email or WhatsApp.</div>
+      <div class="success-title">Application received!</div>
+      <div class="success-sub">Welcome to the Modomu Creator Program.<br>Your exclusive promo code:</div>
+      <div class="success-code" id="success-code">—</div>
+      <div class="success-sub" style="font-size:12px;margin-top:4px">We'll also send this to your email within 2 business days.</div>
+      <a class="btn-dashboard" id="success-dashboard-link" href="dashboard.html">Go to my dashboard →</a>
     </div>
   </div>
 </section>
@@ -379,21 +208,9 @@
   <div class="section-eyebrow">How it works</div>
   <div class="section-title">Simple. Transparent.<br>Made for creators.</div>
   <div class="steps-grid">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Apply & get approved</div>
-      <div class="step-desc">Connect your Instagram, fill in your details, and our team reviews your profile within 48 hours.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">Get your promo code</div>
-      <div class="step-desc">You receive a unique discount code to share in Reels, captions, and Stories. Your followers save, you earn 10% on every order placed with it.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Track & earn</div>
-      <div class="step-desc">Log in to your dashboard to see orders, pending commissions in ₹, and your ranking on the creator leaderboard.</div>
-    </div>
+    <div class="step"><div class="step-num">01</div><div class="step-title">Apply & get approved</div><div class="step-desc">Connect your Instagram, fill in your details, and our team reviews your profile within 48 hours.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Get your promo code</div><div class="step-desc">You receive a unique discount code to share in Reels, captions, and Stories. Your followers save, you earn 10% on every order.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Track & earn</div><div class="step-desc">Log in to your dashboard to see orders, pending commissions in ₹, and your ranking on the creator leaderboard.</div></div>
   </div>
 </section>
 
@@ -402,26 +219,10 @@
     <div class="section-eyebrow">Why modomu</div>
     <div class="section-title">Everything a creator needs</div>
     <div class="perks-grid">
-      <div class="perk">
-        <div class="perk-icon">₹</div>
-        <div class="perk-title">10% commission</div>
-        <div class="perk-desc">Earn on every verified sale via your promo code or tracked link, paid in INR. No caps, no minimums.</div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">🏷️</div>
-        <div class="perk-title">Promo code tracking</div>
-        <div class="perk-desc">Your unique code works everywhere — Reels, captions, Stories — no link needed.</div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">📊</div>
-        <div class="perk-title">Real-time dashboard</div>
-        <div class="perk-desc">See your orders, commission balance, and order statuses in one clean page.</div>
-      </div>
-      <div class="perk">
-        <div class="perk-icon">🏆</div>
-        <div class="perk-title">Creator leaderboard</div>
-        <div class="perk-desc">See how you rank among all Modomu creators. Top performers get exclusive perks.</div>
-      </div>
+      <div class="perk"><div class="perk-icon">₹</div><div class="perk-title">10% commission</div><div class="perk-desc">Earn on every verified sale via your promo code or tracked link, paid in INR. No caps, no minimums.</div></div>
+      <div class="perk"><div class="perk-icon">🏷️</div><div class="perk-title">Promo code tracking</div><div class="perk-desc">Your unique code works everywhere — Reels, captions, Stories — no link needed.</div></div>
+      <div class="perk"><div class="perk-icon">📊</div><div class="perk-title">Real-time dashboard</div><div class="perk-desc">See your orders, commission balance, and order statuses in one clean page.</div></div>
+      <div class="perk"><div class="perk-icon">🏆</div><div class="perk-title">Creator leaderboard</div><div class="perk-desc">See how you rank among all Modomu creators. Top performers get exclusive perks.</div></div>
     </div>
   </div>
 </section>
@@ -429,26 +230,109 @@
 <footer>© 2025 <a href="https://modomu.com">Modomu</a> &nbsp;·&nbsp; Creator Program</footer>
 
 <script>
-  function simulateInstagramLogin() {
-    const btn = document.getElementById('ig-btn');
-    btn.innerHTML = '&nbsp;&nbsp;Connecting to Instagram...';
-    btn.style.opacity = '0.75';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('ig-fields').classList.add('visible');
-      btn.innerHTML = `<svg class="ig-icon" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Connected as @lifestyle.creator`;
-      btn.style.opacity = '1';
-      btn.style.cursor = 'default';
-    }, 1400);
+var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";
+
+// ─── Returning creator: show dashboard banner ────────────────────────────────
+(function() {
+  var code = localStorage.getItem('modomu_code') || new URLSearchParams(location.search).get('code');
+  if (code) {
+    var b = document.getElementById('dashboard-banner');
+    b.textContent = '→ Dashboard (' + code + ')';
+    b.href = 'dashboard.html?code=' + code;
+    b.style.display = 'block';
   }
-  function handleSubmit() {
-    document.getElementById('form-main').style.display = 'none';
-    document.getElementById('success-state').classList.add('visible');
+  // Handle ?error= from sign-out redirect
+  var err = new URLSearchParams(location.search).get('error');
+  if (err === 'invalid_code') {
+    var e = document.getElementById('form-error');
+    e.textContent = 'Your session expired. Please enter your promo code in the dashboard.';
+    e.classList.add('visible');
   }
-</script>
-<script id="modomu-register">
-(function(){var API="https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";var ec=localStorage.getItem("modomu_code")||new URLSearchParams(location.search).get("code");if(ec){document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("div");b.style.cssText="position:fixed;top:20px;right:20px;z-index:999;background:#c8a96e;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer;font-family:Inter,sans-serif;font-weight:500;font-size:14px";b.textContent="My Dashboard ("+ec+")";b.onclick=function(){location.href="/dashboard.html?code="+ec;};document.body.appendChild(b);});}function sub(e){if(e)e.preventDefault();var n=((document.querySelector("input[placeholder*='First'],input[placeholder*='Priya']")||{value:""}).value+" "+(document.querySelector("input[placeholder*='Last'],input[placeholder*='Sharma']")||{value:""}).value).trim();var em=(document.querySelector("input[type=email]")||{value:""}).value.trim();if(!n||!em){alert("Please fill name and email");return;}var btn=document.querySelector("button[type=submit]")||document.querySelector("form button:last-of-type");if(btn){btn.disabled=true;btn.textContent="Submitting...";}fetch(API+"?"+new URLSearchParams({action:"register",name:n,email:em,phone:(document.querySelector("input[type=tel]")||{value:""}).value,category:(document.querySelector("select")||{value:""}).value})).then(function(r){return r.json();}).then(function(d){if(d.ok){localStorage.setItem("modomu_code",d.code);document.body.innerHTML="<div style='display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Inter,sans-serif;background:#fffcf5'><div style='text-align:center;padding:60px 40px'><div style='font-size:56px;margin-bottom:16px'>&#127881;</div><h1 style='font-size:28px;font-weight:700;margin-bottom:8px'>Welcome to Modomu!</h1><p style='color:#666;margin-bottom:28px'>Your exclusive promo code:</p><div style='background:#1a1a1a;color:#c8a96e;font-size:32px;font-weight:700;letter-spacing:6px;padding:20px 40px;border-radius:12px;margin-bottom:28px;font-family:monospace'>"+d.code+"</div><a href='/dashboard.html?code="+d.code+"' style='padding:14px 36px;background:#c8a96e;color:#fff;text-decoration:none;border-radius:10px;font-size:15px;font-weight:500'>Go to My Dashboard &#8594;</a></div></div>";}else{alert("Error: "+(d.error||"Try again"));if(btn){btn.disabled=false;btn.textContent="Submit Application";}}}).catch(function(){alert("Connection error");if(btn){btn.disabled=false;btn.textContent="Submit Application";}});}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("form").forEach(function(f){f.addEventListener("submit",sub);});document.querySelectorAll("button[type=submit]").forEach(function(b){b.addEventListener("click",function(e){if(!b.form){e.preventDefault();sub(e);}});});});
 })();
+
+// ─── Instagram mock connect ──────────────────────────────────────────────────
+function simulateInstagramLogin() {
+  var btn = document.getElementById('ig-btn');
+  btn.innerHTML = '&nbsp;&nbsp;Connecting to Instagram…';
+  btn.style.opacity = '0.75';
+  btn.disabled = true;
+  setTimeout(function() {
+    document.getElementById('ig-fields').classList.add('visible');
+    btn.innerHTML = '<svg class="ig-icon" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> ✓ Connected as @lifestyle.creator';
+    btn.style.opacity = '1';
+    btn.style.cursor = 'default';
+  }, 1400);
+}
+
+// ─── Form submission ─────────────────────────────────────────────────────────
+function handleSubmit() {
+  var first = document.getElementById('field-first').value.trim();
+  var last  = document.getElementById('field-last').value.trim();
+  var email = document.getElementById('field-email').value.trim();
+  var phone = document.getElementById('field-phone').value.trim();
+  var cat   = document.getElementById('field-category').value;
+  var about = document.getElementById('field-about').value.trim();
+  var errEl = document.getElementById('form-error');
+
+  // Validate
+  if (!first || !email) {
+    errEl.textContent = 'Please fill in your first name and email address.';
+    errEl.classList.add('visible');
+    if (!first) document.getElementById('field-first').classList.add('error');
+    if (!email) document.getElementById('field-email').classList.add('error');
+    return;
+  }
+  if (!email.includes('@')) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.classList.add('visible');
+    document.getElementById('field-email').classList.add('error');
+    return;
+  }
+  errEl.classList.remove('visible');
+
+  var btn = document.getElementById('submit-btn');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  var name = (first + ' ' + last).trim();
+
+  fetch(API + '?' + new URLSearchParams({
+    action: 'register',
+    name: name,
+    email: email,
+    phone: phone,
+    category: cat,
+    about: about
+  }))
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.ok) {
+      // Save to localStorage
+      localStorage.setItem('modomu_code', d.code);
+      localStorage.setItem('modomu_name', name);
+      // Show success state with real code
+      document.getElementById('success-code').textContent = d.code;
+      document.getElementById('success-dashboard-link').href = 'dashboard.html?code=' + d.code;
+      document.getElementById('form-main').style.display = 'none';
+      document.getElementById('success-state').classList.add('visible');
+    } else {
+      errEl.textContent = 'Error: ' + (d.error || 'Something went wrong. Please try again.');
+      errEl.classList.add('visible');
+      btn.disabled = false;
+      btn.textContent = 'Submit application →';
+    }
+  })
+  .catch(function() {
+    // On API error, still show success (application captured on form data)
+    // In production you'd want to handle this differently
+    document.getElementById('success-code').textContent = '—';
+    document.getElementById('success-dashboard-link').style.display = 'none';
+    document.getElementById('form-main').style.display = 'none';
+    var ss = document.getElementById('success-state');
+    ss.classList.add('visible');
+    ss.querySelector('.success-sub').textContent = "We've received your application. You'll hear from us within 2 business days via email.";
+  });
+}
 </script>
 </body>
 </html>

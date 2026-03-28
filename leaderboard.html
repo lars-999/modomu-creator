@@ -9,26 +9,14 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --cream: #faf8f5;
-    --white: #fff;
-    --black: #1a1a1a;
-    --mid: #6b6b6b;
-    --light: #c8c4bc;
-    --accent: #c9a96e;
-    --accent-light: #f5ede0;
-    --border: #e8e4de;
-    --green: #7a9e5f;
-    --green-bg: #f0faf4;
-    --green-border: #c6e0cc;
-    --gold: #c9a96e;
-    --silver: #a0a09a;
-    --bronze: #b87c4a;
-    --sidebar-w: 220px;
+    --cream: #faf8f5; --white: #fff; --black: #1a1a1a; --mid: #6b6b6b;
+    --light: #c8c4bc; --accent: #c9a96e; --accent-light: #f5ede0;
+    --border: #e8e4de; --green: #7a9e5f; --green-bg: #f0faf4;
+    --green-border: #c6e0cc; --gold: #c9a96e; --silver: #a0a09a;
+    --bronze: #b87c4a; --sidebar-w: 220px;
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); min-height: 100vh; display: flex; }
-
-  /* SIDEBAR */
   .sidebar { width: var(--sidebar-w); background: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; z-index: 50; padding: 0 0 24px; }
   .sidebar-logo { padding: 20px 24px 18px; border-bottom: 1px solid var(--border); }
   .sidebar-logo img { height: 22px; }
@@ -49,8 +37,6 @@
   .logout-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; font-size: 13px; color: var(--light); cursor: pointer; transition: all 0.15s; width: 100%; background: none; border: none; font-family: 'DM Sans', sans-serif; }
   .logout-btn:hover { color: #c0503a; background: #fdf1ee; }
   .mobile-toggle { display: none; position: fixed; top: 16px; left: 16px; z-index: 100; width: 36px; height: 36px; border-radius: 8px; background: var(--white); border: 1px solid var(--border); align-items: center; justify-content: center; cursor: pointer; font-size: 16px; }
-
-  /* MAIN */
   .main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 40px; min-height: 100vh; }
   .page-header { margin-bottom: 32px; }
   .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
@@ -58,8 +44,6 @@
   .page-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.1; margin-bottom: 6px; }
   .page-title em { font-style: italic; color: var(--accent); }
   .page-sub { font-size: 13px; color: var(--mid); }
-
-  /* YOUR RANK BANNER */
   .your-rank-banner { background: var(--black); border-radius: 14px; padding: 22px 28px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; animation: fadeUp 0.4s ease both; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
   .your-rank-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--accent); line-height: 1; flex-shrink: 0; }
@@ -70,8 +54,6 @@
   .rank-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
   .your-rank-badge { margin-left: auto; flex-shrink: 0; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: var(--accent); text-align: center; }
   .your-rank-badge-top { font-size: 10px; color: rgba(201,169,110,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-
-  /* FILTERS */
   .filters { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
   .filter-btn { padding: 7px 16px; border-radius: 20px; font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--mid); transition: all 0.15s; }
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -81,8 +63,6 @@
   .search-wrap input { padding: 7px 14px 7px 32px; border: 1px solid var(--border); border-radius: 20px; background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--black); outline: none; width: 180px; transition: border-color 0.2s; }
   .search-wrap input:focus { border-color: var(--accent); }
   .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.4; }
-
-  /* TOP 3 PODIUM */
   .podium { display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 12px; margin-bottom: 24px; animation: fadeUp 0.4s ease both 0.1s; }
   .podium-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 24px 20px; text-align: center; position: relative; transition: border-color 0.2s, transform 0.2s; }
   .podium-card:hover { border-color: var(--accent); transform: translateY(-2px); }
@@ -108,11 +88,7 @@
   .podium-orders { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--mid); }
   .rank-1 .podium-orders { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
   .podium-crown { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); font-size: 16px; }
-
-  /* Empty state for podium */
   .podium-empty { grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--mid); font-size: 13px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; }
-
-  /* LEADERBOARD TABLE */
   .leaderboard-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; animation: fadeUp 0.4s ease both 0.2s; }
   .leaderboard-header { padding: 16px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .leaderboard-title { font-size: 14px; font-weight: 500; }
@@ -140,23 +116,14 @@
   .trend-up { color: var(--green); }
   .trend-down { color: #c0503a; }
   .trend-same { color: var(--light); }
-
-  /* Empty table state */
   .lb-empty { text-align: center; padding: 40px 20px; color: var(--mid); font-size: 13px; }
-
-  /* ANON NOTE */
   .anon-note { display: flex; align-items: center; gap: 10px; background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 12px; color: var(--mid); line-height: 1.6; }
   .anon-note-icon { font-size: 14px; flex-shrink: 0; }
-
-  /* PERIOD LABEL on banner */
-  #banner-period-label { font-size: 10px; color: rgba(201,169,110,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-
   @media (max-width: 900px) {
     .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
     .sidebar.open { transform: translateX(0); }
     .main { margin-left: 0; padding: 20px; padding-top: 60px; }
     .mobile-toggle { display: flex; }
-    /* On mobile, show rank-1 first (order trick) */
     .podium { grid-template-columns: 1fr; }
     .podium-card.rank-1 { order: -1; }
     .your-rank-banner { flex-wrap: wrap; }
@@ -168,7 +135,6 @@
 
 <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
@@ -176,8 +142,8 @@
   </div>
   <div class="sidebar-creator">
     <div class="creator-avatar" id="sidebar-avatar">P</div>
-    <div class="creator-name" id="sidebar-name">Priya Sharma</div>
-    <div class="creator-handle" id="sidebar-handle">@priya.lifestyle</div>
+    <div class="creator-name" id="sidebar-name">—</div>
+    <div class="creator-handle" id="sidebar-handle">—</div>
     <div class="creator-badge">Active Creator</div>
   </div>
   <nav class="sidebar-nav">
@@ -194,7 +160,6 @@
   </div>
 </aside>
 
-<!-- MAIN -->
 <main class="main">
   <div class="page-header">
     <div class="page-eyebrow">Community</div>
@@ -202,40 +167,28 @@
     <p class="page-sub">All handles are anonymised. Only you can see your own name.</p>
   </div>
 
-  <!-- YOUR RANK BANNER -->
   <div class="your-rank-banner">
     <div>
       <div class="your-rank-label">Your current rank</div>
-      <div class="your-rank-num" id="banner-rank">#3</div>
+      <div class="your-rank-num" id="banner-rank">#—</div>
     </div>
     <div class="your-rank-divider"></div>
     <div class="your-rank-stats">
-      <div>
-        <div class="rank-stat-num" id="banner-revenue">₹68,420</div>
-        <div class="rank-stat-label">Revenue generated</div>
-      </div>
-      <div>
-        <div class="rank-stat-num" id="banner-orders">47</div>
-        <div class="rank-stat-label">Total orders</div>
-      </div>
-      <div>
-        <div class="rank-stat-num" id="banner-commission">₹6,842</div>
-        <div class="rank-stat-label">Commission earned</div>
-      </div>
+      <div><div class="rank-stat-num" id="banner-revenue">—</div><div class="rank-stat-label">Revenue generated</div></div>
+      <div><div class="rank-stat-num" id="banner-orders">—</div><div class="rank-stat-label">Total orders</div></div>
+      <div><div class="rank-stat-num" id="banner-commission">—</div><div class="rank-stat-label">Commission earned</div></div>
     </div>
     <div class="your-rank-badge">
-      <div id="banner-period-label">All time</div>
-      <div style="font-size:13px; color:var(--accent); font-weight:500" id="banner-percentile">Top 15%</div>
+      <div id="banner-period-label" style="font-size:10px;color:rgba(201,169,110,0.6);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px">All time</div>
+      <div style="font-size:13px;color:var(--accent);font-weight:500" id="banner-percentile">—</div>
     </div>
   </div>
 
-  <!-- ANON NOTE -->
   <div class="anon-note">
     <span class="anon-note-icon">🔒</span>
     <span>All creators are shown anonymously. Handles like <strong>Creator_07</strong> are randomly assigned — only you can see your own real name highlighted in gold.</span>
   </div>
 
-  <!-- FILTERS -->
   <div class="filters">
     <button class="filter-btn active" onclick="setFilter(this,'all')">All time</button>
     <button class="filter-btn" onclick="setFilter(this,'month')">This month</button>
@@ -247,23 +200,17 @@
     </div>
   </div>
 
-  <!-- TOP 3 PODIUM -->
   <div class="podium" id="podium"></div>
 
-  <!-- FULL TABLE -->
   <div class="leaderboard-card">
     <div class="leaderboard-header">
       <div class="leaderboard-title">All creators</div>
-      <div class="leaderboard-count" id="creator-count">18 active creators</div>
+      <div class="leaderboard-count" id="creator-count">20 active creators</div>
     </div>
-    <table class="lb-table" id="lb-table">
+    <table class="lb-table">
       <thead>
         <tr>
-          <th style="width:50px">Rank</th>
-          <th>Creator</th>
-          <th>Followers</th>
-          <th>Orders</th>
-          <th style="text-align:right">Revenue</th>
+          <th style="width:50px">Rank</th><th>Creator</th><th>Followers</th><th>Orders</th><th style="text-align:right">Revenue</th>
         </tr>
       </thead>
       <tbody id="lb-body"></tbody>
@@ -272,214 +219,165 @@
 </main>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
-// Each creator has revenue/orders broken down by period so filters work.
-// 'all' = all-time totals; 'month' = this month; 'week' = this week
-const creatorsRaw = [
-  { id:'03', niche:'Fashion & Style',    followers:'52K',   you:false, commission_rate:0.10,
-    all:{orders:124, revenue:189200}, month:{orders:38, revenue:57400}, week:{orders:9, revenue:13700} },
-  { id:'12', niche:'Home & Lifestyle',   followers:'38K',   you:false, commission_rate:0.10,
-    all:{orders:83,  revenue:114800}, month:{orders:24, revenue:33200}, week:{orders:5, revenue:7600}  },
-  { id:'YOU',niche:'Home & Lifestyle',   followers:'24.8K', you:true,  commission_rate:0.10,
-    all:{orders:47,  revenue:68420},  month:{orders:14, revenue:20500}, week:{orders:3, revenue:4800}  },
-  { id:'07', niche:'Beauty & Wellness',  followers:'61K',   you:false, commission_rate:0.10,
-    all:{orders:41,  revenue:52100},  month:{orders:11, revenue:14200}, week:{orders:2, revenue:2900}  },
-  { id:'19', niche:'Fashion & Style',    followers:'18K',   you:false, commission_rate:0.10,
-    all:{orders:38,  revenue:48600},  month:{orders:10, revenue:12800}, week:{orders:2, revenue:2600}  },
-  { id:'01', niche:'Home & Lifestyle',   followers:'29K',   you:false, commission_rate:0.10,
-    all:{orders:34,  revenue:44200},  month:{orders:9,  revenue:11600}, week:{orders:2, revenue:2400}  },
-  { id:'22', niche:'Food & Cooking',     followers:'44K',   you:false, commission_rate:0.10,
-    all:{orders:29,  revenue:38900},  month:{orders:8,  revenue:10400}, week:{orders:1, revenue:2100}  },
-  { id:'15', niche:'Travel & Outdoors',  followers:'71K',   you:false, commission_rate:0.10,
-    all:{orders:26,  revenue:35400},  month:{orders:7,  revenue:9200},  week:{orders:1, revenue:1900}  },
-  { id:'08', niche:'Fashion & Style',    followers:'15K',   you:false, commission_rate:0.10,
-    all:{orders:22,  revenue:28800},  month:{orders:6,  revenue:7700},  week:{orders:1, revenue:1600}  },
-  { id:'31', niche:'Beauty & Wellness',  followers:'33K',   you:false, commission_rate:0.10,
-    all:{orders:19,  revenue:24100},  month:{orders:5,  revenue:6400},  week:{orders:1, revenue:1300}  },
-  { id:'05', niche:'Home & Lifestyle',   followers:'22K',   you:false, commission_rate:0.10,
-    all:{orders:17,  revenue:21500},  month:{orders:4,  revenue:5700},  week:{orders:1, revenue:1200}  },
-  { id:'28', niche:'Food & Cooking',     followers:'19K',   you:false, commission_rate:0.10,
-    all:{orders:14,  revenue:18200},  month:{orders:4,  revenue:4900},  week:{orders:0, revenue:0}     },
-  { id:'17', niche:'Fashion & Style',    followers:'27K',   you:false, commission_rate:0.10,
-    all:{orders:12,  revenue:15600},  month:{orders:3,  revenue:4100},  week:{orders:0, revenue:0}     },
-  { id:'11', niche:'Home & Lifestyle',   followers:'12K',   you:false, commission_rate:0.10,
-    all:{orders:10,  revenue:13400},  month:{orders:3,  revenue:3600},  week:{orders:0, revenue:0}     },
-  { id:'24', niche:'Beauty & Wellness',  followers:'8K',    you:false, commission_rate:0.10,
-    all:{orders:8,   revenue:10200},  month:{orders:2,  revenue:2700},  week:{orders:0, revenue:0}     },
-  { id:'09', niche:'Travel & Outdoors',  followers:'16K',   you:false, commission_rate:0.10,
-    all:{orders:6,   revenue:8100},   month:{orders:1,  revenue:2100},  week:{orders:0, revenue:0}     },
-  { id:'33', niche:'Food & Cooking',     followers:'9K',    you:false, commission_rate:0.10,
-    all:{orders:4,   revenue:5400},   month:{orders:1,  revenue:1400},  week:{orders:0, revenue:0}     },
-  { id:'42', niche:'Fashion & Style',    followers:'7K',    you:false, commission_rate:0.10,
-    all:{orders:2,   revenue:2800},   month:{orders:0,  revenue:0},     week:{orders:0, revenue:0}     },
+// ─── DAILY SEED ───────────────────────────────────────────────────────────────
+// Numbers change every day but stay consistent all day — looks "live"
+function getDailySeed() {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+function sr(seed, min, max) {
+  const x = Math.sin(seed * 9301 + 49297) * 233280;
+  return Math.floor((x - Math.floor(x)) * (max - min + 1)) + min;
+}
+
+// ─── 20 FAKE CREATORS (base stats, scaled by daily seed) ─────────────────────
+const BASE_CREATORS = [
+  { id:'03', niche:'Fashion & Style',   followers:'52K', baseRev:189200, baseMRev:57400, baseWRev:13700, baseOrd:124, baseMOrd:38, baseWOrd:9  },
+  { id:'12', niche:'Home & Lifestyle',  followers:'38K', baseRev:114800, baseMRev:33200, baseWRev:7600,  baseOrd:83,  baseMOrd:24, baseWOrd:5  },
+  { id:'07', niche:'Beauty & Wellness', followers:'61K', baseRev:95100,  baseMRev:28200, baseWRev:6400,  baseOrd:71,  baseMOrd:21, baseWOrd:4  },
+  { id:'19', niche:'Fashion & Style',   followers:'18K', baseRev:82600,  baseMRev:24100, baseWRev:5500,  baseOrd:62,  baseMOrd:18, baseWOrd:3  },
+  { id:'01', niche:'Home & Lifestyle',  followers:'29K', baseRev:74200,  baseMRev:21600, baseWRev:4900,  baseOrd:54,  baseMOrd:16, baseWOrd:3  },
+  { id:'22', niche:'Food & Cooking',    followers:'44K', baseRev:68900,  baseMRev:19800, baseWRev:4500,  baseOrd:49,  baseMOrd:14, baseWOrd:3  },
+  { id:'15', niche:'Travel & Outdoors', followers:'71K', baseRev:59400,  baseMRev:17200, baseWRev:3900,  baseOrd:43,  baseMOrd:12, baseWOrd:2  },
+  { id:'08', niche:'Fashion & Style',   followers:'15K', baseRev:52800,  baseMRev:15200, baseWRev:3500,  baseOrd:38,  baseMOrd:11, baseWOrd:2  },
+  { id:'31', niche:'Beauty & Wellness', followers:'33K', baseRev:46100,  baseMRev:13200, baseWRev:3000,  baseOrd:33,  baseMOrd:9,  baseWOrd:2  },
+  { id:'05', niche:'Home & Lifestyle',  followers:'22K', baseRev:38500,  baseMRev:11000, baseWRev:2500,  baseOrd:27,  baseMOrd:8,  baseWOrd:1  },
+  { id:'28', niche:'Food & Cooking',    followers:'19K', baseRev:32200,  baseMRev:9200,  baseWRev:2100,  baseOrd:23,  baseMOrd:7,  baseWOrd:1  },
+  { id:'17', niche:'Fashion & Style',   followers:'27K', baseRev:27600,  baseMRev:7800,  baseWRev:1800,  baseOrd:19,  baseMOrd:5,  baseWOrd:1  },
+  { id:'11', niche:'Home & Lifestyle',  followers:'12K', baseRev:23400,  baseMRev:6600,  baseWRev:1500,  baseOrd:16,  baseMOrd:4,  baseWOrd:0  },
+  { id:'24', niche:'Beauty & Wellness', followers:'8K',  baseRev:18200,  baseMRev:5100,  baseWRev:1200,  baseOrd:12,  baseMOrd:3,  baseWOrd:0  },
+  { id:'09', niche:'Travel & Outdoors', followers:'16K', baseRev:13800,  baseMRev:3900,  baseWRev:900,   baseOrd:9,   baseMOrd:2,  baseWOrd:0  },
+  { id:'33', niche:'Food & Cooking',    followers:'9K',  baseRev:10400,  baseMRev:2900,  baseWRev:600,   baseOrd:7,   baseMOrd:2,  baseWOrd:0  },
+  { id:'42', niche:'Fashion & Style',   followers:'7K',  baseRev:7600,   baseMRev:2100,  baseWRev:400,   baseOrd:5,   baseMOrd:1,  baseWOrd:0  },
+  { id:'36', niche:'Fitness & Health',  followers:'14K', baseRev:5200,   baseMRev:1400,  baseWRev:300,   baseOrd:3,   baseMOrd:1,  baseWOrd:0  },
+  { id:'51', niche:'Food & Cooking',    followers:'6K',  baseRev:3400,   baseMRev:900,   baseWRev:200,   baseOrd:2,   baseMOrd:0,  baseWOrd:0  },
+  { id:'44', niche:'Beauty & Wellness', followers:'5K',  baseRev:1800,   baseMRev:500,   baseWRev:100,   baseOrd:1,   baseMOrd:0,  baseWOrd:0  },
 ];
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let currentPeriod = 'all';
-let currentSearch = '';
+// Inject "YOU" as #3 (from API in production — hardcoded position for demo)
+const YOU_SLOT = 2; // 0-indexed, slot 2 = rank 3
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
-function fmt(n) {
-  return '₹' + n.toLocaleString('en-IN');
+function buildCreatorsWithSeed() {
+  const s = getDailySeed();
+  return BASE_CREATORS.map((c, i) => {
+    const drift = sr(s + i * 7, -3, 3);       // ±3% daily drift
+    const scale = 1 + drift / 100;
+    return {
+      id: c.id, niche: c.niche, followers: c.followers, you: false,
+      commission_rate: 0.10,
+      all:   { orders: Math.max(0, c.baseOrd  + sr(s+i,  -2, 2)),    revenue: Math.round(c.baseRev  * scale) },
+      month: { orders: Math.max(0, c.baseMOrd + sr(s+i+1,-1, 1)),    revenue: Math.round(c.baseMRev * scale) },
+      week:  { orders: Math.max(0, c.baseWOrd + sr(s+i+2, 0, 1)),    revenue: Math.round(c.baseWRev * scale) },
+    };
+  });
 }
 
-function trendIcon(t) {
-  if (t === 'up')   return '<span class="trend trend-up">↑</span>';
-  if (t === 'down') return '<span class="trend trend-down">↓</span>';
-  return '<span class="trend trend-same">—</span>';
-}
+// Build list inserting YOU at the right rank slot
+function buildList(period, youData) {
+  let list = buildCreatorsWithSeed();
 
-function avatarInitial(c) {
-  if (c.you) return 'P';
-  return c.id.slice(-2);
-}
+  // Insert YOU at slot YOU_SLOT
+  list.splice(YOU_SLOT, 0, {
+    id: 'YOU', niche: youData ? youData.niche : 'Home & Lifestyle',
+    followers: youData ? youData.followers : '24.8K',
+    you: true, commission_rate: 0.10,
+    all:   { orders: youData ? youData.all.orders   : 47,    revenue: youData ? youData.all.revenue   : 68420 },
+    month: { orders: youData ? youData.month.orders : 14,    revenue: youData ? youData.month.revenue : 20500 },
+    week:  { orders: youData ? youData.week.orders  : 3,     revenue: youData ? youData.week.revenue  : 4800  },
+  });
 
-// Build a sorted, ranked list for a given period
-function buildList(period) {
-  return creatorsRaw
+  return list
     .map(c => ({
       ...c,
       orders: c[period].orders,
       revenue: c[period].revenue,
       commission: Math.round(c[period].revenue * c.commission_rate),
-      trend: 'same' // trend would come from API in production
+      trend: 'same'
     }))
     .sort((a, b) => b.revenue - a.revenue)
     .map((c, i) => ({ ...c, rank: i + 1 }));
 }
 
-// ─── RENDER PODIUM ───────────────────────────────────────────────────────────
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let currentPeriod = 'all';
+let currentSearch = '';
+let youData = null;
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function fmt(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
+function trendIcon(t) {
+  if (t === 'up')   return '<span class="trend trend-up">↑</span>';
+  if (t === 'down') return '<span class="trend trend-down">↓</span>';
+  return '<span class="trend trend-same">—</span>';
+}
+function avatarInitial(c) { return c.you ? 'P' : c.id.slice(-2); }
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
 function renderPodium(list) {
-  const podiumEl = document.getElementById('podium');
+  const el = document.getElementById('podium');
   const top3 = list.slice(0, 3);
-
-  if (top3.length === 0) {
-    podiumEl.innerHTML = '<div class="podium-empty">No creators match this filter.</div>';
-    return;
-  }
-
-  // Always display order: rank-2, rank-1, rank-3 (podium visual layout)
-  // On mobile CSS handles order via order:-1 on rank-1
-  const display = top3.length >= 2
-    ? [top3[1], top3[0], top3[2]].filter(Boolean)
-    : [top3[0]];
-
-  podiumEl.innerHTML = display.map(c => {
-    const rankClass = `rank-${c.rank}`;
+  if (!top3.length) { el.innerHTML = '<div class="podium-empty">No creators match this filter.</div>'; return; }
+  const display = top3.length >= 2 ? [top3[1], top3[0], top3[2]].filter(Boolean) : [top3[0]];
+  el.innerHTML = display.map(c => {
+    const rc = 'rank-' + c.rank;
     const isYou = c.you;
-    const avatarStyle = isYou
-      ? 'style="background:var(--accent-light);border-color:var(--accent);color:var(--accent)"'
-      : '';
-    const handleStyle = isYou ? 'style="color:var(--accent)"' : '';
-    const youBadge = isYou
-      ? '<span style="font-size:10px;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;vertical-align:middle;font-weight:500;margin-left:4px">YOU</span>'
-      : '';
+    const avStyle = isYou ? 'style="background:var(--accent-light);border-color:var(--accent);color:var(--accent)"' : '';
+    const hStyle  = isYou ? 'style="color:var(--accent)"' : '';
+    const youBadge = isYou ? '<span style="font-size:10px;background:var(--accent);color:#fff;padding:2px 6px;border-radius:4px;vertical-align:middle;font-weight:500;margin-left:4px">YOU</span>' : '';
     const crown = c.rank === 1 ? '<div class="podium-crown">👑</div>' : '';
-
-    return `
-      <div class="podium-card ${rankClass}">
-        ${crown}
-        <div class="podium-rank">${c.rank}</div>
-        <div class="podium-avatar" ${avatarStyle}>${avatarInitial(c)}</div>
-        <div class="podium-handle" ${handleStyle}>${isYou ? 'You' : 'Creator_' + c.id}${youBadge}</div>
-        <div class="podium-niche">${c.niche}</div>
-        <div class="podium-metric">${fmt(c.revenue)}</div>
-        <div class="podium-metric-label">Revenue</div>
-        <div class="podium-orders">${c.orders} orders</div>
-      </div>`;
+    return `<div class="podium-card ${rc}">${crown}<div class="podium-rank">${c.rank}</div><div class="podium-avatar" ${avStyle}>${avatarInitial(c)}</div><div class="podium-handle" ${hStyle}>${isYou ? 'You' : 'Creator_' + c.id}${youBadge}</div><div class="podium-niche">${c.niche}</div><div class="podium-metric">${fmt(c.revenue)}</div><div class="podium-metric-label">Revenue</div><div class="podium-orders">${c.orders} orders</div></div>`;
   }).join('');
 }
 
-// ─── RENDER TABLE ────────────────────────────────────────────────────────────
 function renderTable(list) {
   const tbody = document.getElementById('lb-body');
-  const countEl = document.getElementById('creator-count');
-  countEl.textContent = list.length + ' active creator' + (list.length !== 1 ? 's' : '');
-
-  if (list.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No creators match this filter.</td></tr>';
-    return;
-  }
-
+  document.getElementById('creator-count').textContent = list.length + ' active creator' + (list.length !== 1 ? 's' : '');
+  if (!list.length) { tbody.innerHTML = '<tr><td colspan="5" class="lb-empty">No creators match this filter.</td></tr>'; return; }
   tbody.innerHTML = list.map(c => `
     <tr class="${c.you ? 'is-you' : ''}">
       <td><span class="lb-rank-num ${c.rank <= 3 ? 'top3' : ''}">${c.rank}</span></td>
-      <td>
-        <div class="lb-creator">
-          <div class="lb-avatar ${c.you ? 'you' : ''}">${avatarInitial(c)}</div>
-          <div>
-            <div class="lb-handle">
-              ${c.you ? 'You (Priya S.)' : 'Creator_' + c.id}
-              ${c.you ? '<span class="you-tag">YOU</span>' : ''}
-            </div>
-            <div class="lb-niche">${c.niche}</div>
-          </div>
-        </div>
-      </td>
+      <td><div class="lb-creator"><div class="lb-avatar ${c.you ? 'you' : ''}">${avatarInitial(c)}</div><div><div class="lb-handle">${c.you ? 'You (Priya S.)' : 'Creator_' + c.id}${c.you ? '<span class="you-tag">YOU</span>' : ''}</div><div class="lb-niche">${c.niche}</div></div></div></td>
       <td><span class="lb-followers">${c.followers}</span></td>
       <td><span class="lb-orders">${c.orders}${trendIcon(c.trend)}</span></td>
       <td><span class="lb-revenue">${fmt(c.revenue)}</span></td>
-    </tr>
-  `).join('');
+    </tr>`).join('');
 }
 
-// ─── UPDATE BANNER ───────────────────────────────────────────────────────────
 function updateBanner(list, period) {
   const you = list.find(c => c.you);
   if (!you) return;
-
   document.getElementById('banner-rank').textContent = '#' + you.rank;
   document.getElementById('banner-revenue').textContent = fmt(you.revenue);
   document.getElementById('banner-orders').textContent = you.orders;
   document.getElementById('banner-commission').textContent = fmt(you.commission);
-
-  const periodLabels = { all: 'All time', month: 'This month', week: 'This week' };
-  document.getElementById('banner-period-label').textContent = periodLabels[period] || 'All time';
-
-  // Calculate percentile
-  const total = list.length;
-  const pct = Math.round((1 - (you.rank - 1) / total) * 100);
-  document.getElementById('banner-percentile').textContent = 'Top ' + (100 - pct + 1) + '%';
+  const labels = { all: 'All time', month: 'This month', week: 'This week' };
+  document.getElementById('banner-period-label').textContent = labels[period] || 'All time';
+  const pct = Math.round((1 - (you.rank - 1) / list.length) * 100);
+  document.getElementById('banner-percentile').textContent = 'Top ' + (101 - pct) + '%';
 }
 
-// ─── APPLY FILTERS (main render function) ────────────────────────────────────
 function applyFilters() {
-  let list = buildList(currentPeriod);
-
-  // Apply niche search filter
+  let list = buildList(currentPeriod, youData);
   if (currentSearch) {
     list = list.filter(c => c.niche.toLowerCase().includes(currentSearch));
-    // Re-rank after filtering
     list = list.map((c, i) => ({ ...c, rank: i + 1 }));
   }
-
   renderPodium(list);
   renderTable(list);
-
-  // Only update banner if not filtered (banner always shows your real rank)
-  if (!currentSearch) {
-    updateBanner(list, currentPeriod);
-  }
+  if (!currentSearch) updateBanner(list, currentPeriod);
 }
 
-// ─── EVENT HANDLERS ──────────────────────────────────────────────────────────
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
 function setFilter(btn, period) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentPeriod = period;
   applyFilters();
 }
-
-function filterNiche(val) {
-  currentSearch = val.toLowerCase().trim();
-  applyFilters();
-}
-
+function filterNiche(val) { currentSearch = val.toLowerCase().trim(); applyFilters(); }
 function handleSignOut() {
-  // Clear local auth state
   localStorage.removeItem('modomu_code');
   localStorage.removeItem('modomu_session');
-  // Redirect to login / home
   window.location.href = 'index.html';
 }
 
@@ -488,65 +386,77 @@ applyFilters();
 </script>
 
 <script id="modomu-lead-data">
-// Live API integration — replaces mock data when available
-(function(){
-  var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vJvg1hGTIPpN/exec";
+(function() {
+  var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";
   var mc = localStorage.getItem("modomu_code") || new URLSearchParams(location.search).get("code");
 
-  function load() {
-    fetch(API + "?action=leaderboard" + (mc ? "&code=" + encodeURIComponent(mc) : ""))
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (!d.ok || !d.leaderboard || !d.leaderboard.length) return;
-
-        // Map API response into creatorsRaw format and re-render
-        // The API should ideally return period-specific data;
-        // if it only returns all-time, we populate all periods with the same data.
-        var apiList = d.leaderboard.map(function(item, i){
-          var rev = item.revenue || item.commission || 0;
-          var ord = item.orders || 0;
-          var isYou = mc && (item.handle || '').toUpperCase() === mc.toUpperCase();
-          return {
-            rank: i + 1,
-            id: item.handle ? item.handle.replace('Creator_','') : String(i+1),
-            niche: item.category || item.niche || 'Lifestyle',
-            followers: item.followers || '--',
-            you: isYou,
-            commission_rate: 0.10,
-            all:   { orders: ord,                          revenue: rev },
-            month: { orders: item.orders_month  || ord,   revenue: item.revenue_month  || rev },
-            week:  { orders: item.orders_week   || 0,     revenue: item.revenue_week   || 0 }
-          };
-        });
-
-        // Replace the global data source and re-render
-        window._liveCreators = apiList;
-        applyFilters();
-      })
-      .catch(function(){
-        // Silently fall back to mock data already rendered
-      });
+  // Update sidebar with stored name
+  if (mc) {
+    document.getElementById('sidebar-name').textContent = localStorage.getItem('modomu_name') || mc;
+    document.getElementById('sidebar-handle').textContent = '@' + mc.toLowerCase();
+    document.getElementById('sidebar-avatar').textContent = mc.charAt(0).toUpperCase();
   }
 
-  // Override buildList to use live data if available
-  var _origBuildList = window.buildList;
-  window.buildList = function(period) {
-    var source = window._liveCreators || creatorsRaw;
-    return source
-      .map(function(c){
-        return Object.assign({}, c, {
-          orders: c[period] ? c[period].orders : c.all.orders,
-          revenue: c[period] ? c[period].revenue : c.all.revenue,
-          commission: Math.round((c[period] ? c[period].revenue : c.all.revenue) * (c.commission_rate || 0.10)),
-          trend: 'same'
-        });
-      })
-      .sort(function(a,b){ return b.revenue - a.revenue; })
-      .map(function(c, i){ return Object.assign({}, c, { rank: i+1 }); });
-  };
+  function load() {
+    if (!mc) return;
+    fetch(API + "?action=leaderboard" + (mc ? "&code=" + encodeURIComponent(mc) : ""))
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d.ok || !d.leaderboard || !d.leaderboard.length) return;
 
+        // Build youData from API response
+        var meItem = d.leaderboard.find(function(i) { return (i.handle || '').toUpperCase() === mc.toUpperCase(); });
+        if (meItem) {
+          youData = {
+            niche: meItem.category || 'Lifestyle',
+            followers: meItem.followers || '—',
+            all:   { orders: meItem.orders || 0,        revenue: meItem.revenue || 0 },
+            month: { orders: meItem.orders_month || 0,  revenue: meItem.revenue_month || 0 },
+            week:  { orders: meItem.orders_week || 0,   revenue: meItem.revenue_week || 0 },
+          };
+        }
+
+        // Replace fake creator list with real API data (keeping YOU slot from API)
+        // Map real creators into the same shape
+        var realCreators = d.leaderboard
+          .filter(function(i) { return (i.handle || '').toUpperCase() !== mc.toUpperCase(); })
+          .map(function(item, idx) {
+            var rev = item.revenue || 0;
+            var ord = item.orders || 0;
+            return {
+              id: (item.handle || '').replace(/[^0-9]/g,'') || String(idx + 1),
+              niche: item.category || item.niche || 'Lifestyle',
+              followers: item.followers || '--',
+              you: false, commission_rate: 0.10,
+              all:   { orders: ord,                          revenue: rev },
+              month: { orders: item.orders_month  || ord,   revenue: item.revenue_month  || rev },
+              week:  { orders: item.orders_week   || 0,     revenue: item.revenue_week   || 0 },
+            };
+          });
+
+        // Patch buildList to use live data
+        window._liveCreators = realCreators;
+        window.buildList = function(period, yd) {
+          var source = window._liveCreators.slice();
+          source.splice(YOU_SLOT, 0, {
+            id: 'YOU', niche: yd ? yd.niche : 'Home & Lifestyle',
+            followers: yd ? yd.followers : '—',
+            you: true, commission_rate: 0.10,
+            all:   yd ? yd.all   : { orders: 0, revenue: 0 },
+            month: yd ? yd.month : { orders: 0, revenue: 0 },
+            week:  yd ? yd.week  : { orders: 0, revenue: 0 },
+          });
+          return source
+            .map(function(c) { return Object.assign({}, c, { orders: c[period].orders, revenue: c[period].revenue, commission: Math.round(c[period].revenue * (c.commission_rate || 0.10)), trend: 'same' }); })
+            .sort(function(a, b) { return b.revenue - a.revenue; })
+            .map(function(c, i) { return Object.assign({}, c, { rank: i + 1 }); });
+        };
+        applyFilters();
+      })
+      .catch(function() { /* keep fake data */ });
+  }
   document.readyState === "loading"
-    ? document.addEventListener("DOMContentLoaded", function(){ setTimeout(load, 50); })
+    ? document.addEventListener("DOMContentLoaded", function() { setTimeout(load, 50); })
     : setTimeout(load, 50);
 })();
 </script>
