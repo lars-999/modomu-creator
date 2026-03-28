@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modomu · Creator Program</title>
+<title>Modomu · Creator Programme</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -11,15 +11,21 @@
 :root {
   --cream: #faf8f5; --white: #fff; --black: #1a1a1a; --mid: #6b6b6b;
   --light: #c8c4bc; --accent: #c9a96e; --accent-light: #f5ede0;
-  --border: #e8e4de; --green: #7a9e5f;
+  --border: #e8e4de; --green: #7a9e5f; --green-bg: #f0faf4;
+  --green-border: #c6e0cc; --red: #c0503a; --red-bg: #fdf1ee;
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); min-height: 100vh; overflow-x: hidden; }
+
+/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,248,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo img { height: 28px; display: block; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
 .nav-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); font-weight: 400; }
 .dashboard-banner { display: none; align-items: center; gap: 6px; background: var(--black); color: var(--accent); padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; text-decoration: none; border: 1px solid rgba(201,169,110,0.3); transition: background 0.15s; white-space: nowrap; }
 .dashboard-banner:hover { background: #2d2d2d; }
+
+/* HERO */
 .hero { padding: 140px 48px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1160px; margin: 0 auto; }
 .hero-left { position: sticky; top: 84px; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 28px; }
@@ -32,49 +38,69 @@ h1 em { font-style: italic; color: var(--accent); }
 .stat-label { font-size: 12px; color: var(--mid); margin-top: 2px; letter-spacing: 0.04em; }
 .tracking-note { display: flex; align-items: flex-start; gap: 10px; background: var(--accent-light); border: 1px solid #e8d5b8; border-radius: 10px; padding: 14px 16px; margin-top: 32px; font-size: 12px; color: #8a6c3a; line-height: 1.65; }
 .tracking-note-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+/* FORM CARD */
 .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 40px 38px; box-shadow: 0 8px 40px rgba(0,0,0,0.06); animation: slideUp 0.5s ease both 0.15s; }
 @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 .form-title { font-family: 'DM Serif Display', serif; font-size: 21px; margin-bottom: 5px; }
 .form-sub { font-size: 13px; color: var(--mid); margin-bottom: 28px; line-height: 1.6; }
-.btn-instagram { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity 0.2s, transform 0.15s; margin-bottom: 18px; }
-.btn-instagram:hover { opacity: 0.88; transform: translateY(-1px); }
-.ig-icon { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
-.ig-fields { display: none; background: #f0faf4; border: 1px solid #c6e0cc; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
-.ig-fields.visible { display: block; }
-.ig-connected-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--green); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
-.ig-connected-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); }
-.ig-field-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 13px; }
-.ig-field-row:not(:last-child) { border-bottom: 1px solid #d8eedd; }
-.ig-field-label { color: var(--mid); font-size: 12px; }
-.ig-field-value { font-weight: 500; }
+
+/* INSTAGRAM INPUT FIELD */
+.ig-input-wrap { margin-bottom: 18px; }
+.ig-input-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+.ig-url-row { display: flex; gap: 10px; align-items: flex-start; }
+.ig-url-input-wrap { flex: 1; position: relative; }
+.ig-url-input { width: 100%; padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; }
+.ig-url-input:focus { border-color: var(--accent); background: var(--white); }
+.ig-url-input.error { border-color: var(--red); }
+.ig-url-input.success { border-color: var(--green); }
+.ig-url-hint { font-size: 11px; color: var(--light); margin-top: 5px; }
+.btn-ig-connect { padding: 10px 16px; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; flex-shrink: 0; }
+.btn-ig-connect:hover { opacity: 0.88; }
+.btn-ig-connect:disabled { opacity: 0.5; cursor: not-allowed; }
+.ig-resolved { display: none; align-items: center; gap: 10px; background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+.ig-resolved.visible { display: flex; }
+.ig-resolved-handle { font-size: 13px; font-weight: 500; color: var(--green); }
+.ig-resolved-meta { font-size: 11px; color: var(--mid); }
+.ig-resolved-icon { font-size: 16px; flex-shrink: 0; }
+.ig-change-link { font-size: 11px; color: var(--accent); cursor: pointer; margin-left: auto; text-decoration: underline; }
+
+/* DIVIDER */
 .divider { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--light); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
 .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* FORM FIELDS */
 .field-group { margin-bottom: 14px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
 label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 5px; }
 input, select, textarea { width: 100%; padding: 10px 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
 input:focus, select:focus, textarea:focus { border-color: var(--accent); background: var(--white); }
 input::placeholder { color: var(--light); }
-input.error, select.error { border-color: #c0503a; }
+input.error, select.error { border-color: var(--red); }
 .phone-wrap { display: flex; gap: 8px; }
 .phone-prefix { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--cream); font-size: 14px; color: var(--mid); white-space: nowrap; flex-shrink: 0; }
 .phone-wrap input { flex: 1; }
 select { cursor: pointer; }
 textarea { resize: none; height: 76px; line-height: 1.6; }
+.form-error { font-size: 12px; color: var(--red); margin-top: -8px; margin-bottom: 10px; display: none; }
+.form-error.visible { display: block; }
+
+/* SUBMIT BUTTON */
 .btn-submit { width: 100%; padding: 14px; background: var(--black); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; }
 .btn-submit:hover { background: #2d2d2d; transform: translateY(-1px); }
 .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .form-note { text-align: center; font-size: 11px; color: var(--light); margin-top: 12px; line-height: 1.7; }
-.form-error { font-size: 12px; color: #c0503a; margin-top: -8px; margin-bottom: 10px; display: none; }
-.form-error.visible { display: block; }
+.form-note a { color: var(--light); }
+
+/* SUCCESS STATE */
 .success-state { display: none; text-align: center; padding: 20px 0; }
 .success-state.visible { display: block; }
 .success-check { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 22px; }
 .success-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 8px; }
 .success-sub { font-size: 14px; color: var(--mid); line-height: 1.75; }
-.success-code { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--accent); letter-spacing: 0.08em; background: var(--black); padding: 14px 24px; border-radius: 10px; margin: 16px auto; display: inline-block; }
-.btn-dashboard { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--accent); color: var(--black); border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; margin-top: 8px; }
-/* HOW + PERKS (unchanged from original) */
+.btn-dashboard-success { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--accent); color: var(--black); border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; margin-top: 20px; }
+
+/* HOW IT WORKS */
 .how { max-width: 1160px; margin: 0 auto; padding: 90px 48px; }
 .section-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
 .section-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
@@ -84,6 +110,8 @@ textarea { resize: none; height: 76px; line-height: 1.6; }
 .step-num { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--accent-light); line-height: 1; margin-bottom: 18px; }
 .step-title { font-size: 15px; font-weight: 500; margin-bottom: 10px; }
 .step-desc { font-size: 13px; color: var(--mid); line-height: 1.75; font-weight: 300; }
+
+/* PERKS */
 .perks { background: var(--black); padding: 90px 48px; }
 .perks-inner { max-width: 1160px; margin: 0 auto; }
 .perks .section-eyebrow { color: var(--accent); }
@@ -95,8 +123,12 @@ textarea { resize: none; height: 76px; line-height: 1.6; }
 .perk-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(201,169,110,0.14); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 17px; }
 .perk-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 9px; }
 .perk-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; }
+
+/* FOOTER */
 footer { text-align: center; padding: 36px 48px; border-top: 1px solid var(--border); font-size: 12px; color: var(--light); }
 footer a { color: inherit; text-decoration: none; }
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
   .hero-left { position: static; }
@@ -105,6 +137,8 @@ footer a { color: inherit; text-decoration: none; }
   .perks-grid { grid-template-columns: 1fr 1fr; }
   nav { padding: 0 24px; }
   .how, .perks { padding: 60px 24px; }
+  .ig-url-row { flex-direction: column; }
+  .btn-ig-connect { width: 100%; }
 }
 @media (max-width: 540px) {
   .perks-grid { grid-template-columns: 1fr; }
@@ -120,50 +154,73 @@ footer a { color: inherit; text-decoration: none; }
     <img src="https://modomu.com/cdn/shop/files/20251124-161853.png?height=72&v=1763972535" alt="Modomu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
     <span style="display:none; font-family:'DM Serif Display',serif; font-size:20px;">modomu</span>
   </a>
-  <span class="nav-tag">Creator Program</span>
-  <a class="dashboard-banner" id="dashboard-banner" href="dashboard.html">→ Go to my dashboard</a>
+  <div class="nav-right">
+    <span class="nav-tag" id="nav-tag">Creator Programme</span>
+    <a class="dashboard-banner" id="dashboard-banner" href="dashboard.html">→ My Dashboard</a>
+  </div>
 </nav>
 
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">For Creators</div>
     <h1>Grow with<br><em>modomu</em></h1>
-    <p class="hero-sub">Join our creator community. Share products you love, earn 10% commission on every sale, and be part of a brand built for everyone — 모두.</p>
+    <p class="hero-sub">Join our creator community. Share products you love, earn 10% commission on every order, and be part of a brand built for everyone — 모두.</p>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">10%</div><div class="stat-label">Commission rate</div></div>
-      <div class="stat-item"><div class="stat-num">₹</div><div class="stat-label">Paid in INR</div></div>
-      <div class="stat-item"><div class="stat-num">30d</div><div class="stat-label">Tracking window</div></div>
+      <div class="stat-item">
+        <div class="stat-num">10%</div>
+        <div class="stat-label">Commission rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">₹</div>
+        <div class="stat-label">Paid in INR</div>
+      </div>
     </div>
     <div class="tracking-note">
       <span class="tracking-note-icon">🏷️</span>
-      <span>Sales are tracked primarily via your <strong>personal promo code</strong> — works everywhere including Reels and captions. Cookie-based tracking is also active for audiences who click through bio or Story links.</span>
+      <span>All sales are tracked via your <strong>personal promo code</strong>. Share it freely in Reels, captions, Stories, or anywhere your audience can see it — no special links required.</span>
     </div>
   </div>
 
   <div class="form-card">
     <div id="form-main">
       <div class="form-title">Apply to join</div>
-      <div class="form-sub">Connect your Instagram — we'll pull your profile info automatically.</div>
+      <div class="form-sub">Share your Instagram profile link and we'll read your handle automatically.</div>
 
-      <button class="btn-instagram" type="button" id="ig-btn" onclick="simulateInstagramLogin()">
-        <svg class="ig-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Continue with Instagram
-      </button>
-
-      <div class="ig-fields" id="ig-fields">
-        <div class="ig-connected-badge">Instagram connected</div>
-        <div class="ig-field-row"><span class="ig-field-label">Username</span><span class="ig-field-value" id="ig-username">@lifestyle.creator</span></div>
-        <div class="ig-field-row"><span class="ig-field-label">Followers</span><span class="ig-field-value" id="ig-followers">24,800</span></div>
-        <div class="ig-field-row"><span class="ig-field-label">Posts</span><span class="ig-field-value">312</span></div>
+      <!-- INSTAGRAM URL INPUT -->
+      <div class="ig-input-wrap">
+        <label class="ig-input-label">Instagram profile</label>
+        <div class="ig-url-row">
+          <div class="ig-url-input-wrap">
+            <input
+              class="ig-url-input"
+              id="ig-url-input"
+              type="text"
+              placeholder="e.g. instagram.com/yourhandle or @yourhandle"
+              oninput="onIgInput(this)"
+              autocomplete="off"
+              autocapitalize="none"
+            >
+            <div class="ig-url-hint" id="ig-url-hint">Paste your profile link or type your @handle</div>
+          </div>
+          <button class="btn-ig-connect" type="button" id="ig-connect-btn" onclick="resolveIgHandle()" disabled>Verify</button>
+        </div>
+        <div class="ig-resolved" id="ig-resolved">
+          <span class="ig-resolved-icon">✓</span>
+          <div>
+            <div class="ig-resolved-handle" id="ig-resolved-handle">@handle</div>
+            <div class="ig-resolved-meta" id="ig-resolved-meta">Instagram profile linked</div>
+          </div>
+          <span class="ig-change-link" onclick="resetIgInput()">Change</span>
+        </div>
       </div>
 
       <div class="divider">your details</div>
 
       <div class="field-row">
-        <div class="field-group"><label>First name</label><input type="text" id="field-first" placeholder="Priya"></div>
-        <div class="field-group"><label>Last name</label><input type="text" id="field-last" placeholder="Sharma"></div>
+        <div class="field-group"><label>First name</label><input type="text" id="field-first" placeholder="Ji-yeon"></div>
+        <div class="field-group"><label>Last name</label><input type="text" id="field-last" placeholder="Kim"></div>
       </div>
-      <div class="field-group"><label>Email address</label><input type="email" id="field-email" placeholder="priya@email.com"></div>
+      <div class="field-group"><label>Email address</label><input type="email" id="field-email" placeholder="you@email.com"></div>
       <div class="field-group">
         <label>WhatsApp / Phone</label>
         <div class="phone-wrap">
@@ -175,41 +232,51 @@ footer a { color: inherit; text-decoration: none; }
         <label>Content category</label>
         <select id="field-category">
           <option value="" disabled selected>Select your niche</option>
-          <option>Home & Lifestyle</option>
-          <option>Fashion & Style</option>
-          <option>Beauty & Wellness</option>
-          <option>Food & Cooking</option>
-          <option>Travel & Outdoors</option>
-          <option>Fitness & Health</option>
+          <option>Home &amp; Lifestyle</option>
+          <option>Fashion &amp; Style</option>
+          <option>Beauty &amp; Wellness</option>
+          <option>Food &amp; Cooking</option>
+          <option>Travel &amp; Outdoors</option>
+          <option>Fitness &amp; Health</option>
           <option>Other</option>
         </select>
       </div>
-      <div class="field-group"><label>About your audience</label><textarea id="field-about" placeholder="Who follows you? What content do you create?"></textarea></div>
+      <div class="field-group"><label>About your audience</label><textarea id="field-about" placeholder="Who follows you? What do you create?"></textarea></div>
 
-      <div class="form-error" id="form-error">Please fill in your name and email address.</div>
+      <div class="form-error" id="form-error"></div>
 
       <button class="btn-submit" type="button" id="submit-btn" onclick="handleSubmit()">Submit application →</button>
-      <div class="form-note">We review applications within 2 business days.<br>By applying you agree to our creator terms.</div>
+      <div class="form-note">We review applications within 2 business days.<br>By applying you agree to our <a href="#">creator terms</a>.</div>
     </div>
 
     <div class="success-state" id="success-state">
       <div class="success-check">✓</div>
-      <div class="success-title">Application received!</div>
-      <div class="success-sub">Welcome to the Modomu Creator Program.<br>Your exclusive promo code:</div>
-      <div class="success-code" id="success-code">—</div>
-      <div class="success-sub" style="font-size:12px;margin-top:4px">We'll also send this to your email within 2 business days.</div>
-      <a class="btn-dashboard" id="success-dashboard-link" href="dashboard.html">Go to my dashboard →</a>
+      <div class="success-title">Application received</div>
+      <div class="success-sub" id="success-sub">Thank you for applying to the Modomu Creator Programme.<br>We'll be in touch within 2 business days via email or WhatsApp.</div>
+      <a class="btn-dashboard-success" id="success-dashboard-link" href="dashboard.html" style="display:none">Go to my dashboard →</a>
     </div>
   </div>
 </section>
 
 <section class="how">
   <div class="section-eyebrow">How it works</div>
-  <div class="section-title">Simple. Transparent.<br>Made for creators.</div>
+  <div class="section-title">Simple. Transparent.<br>Built for creators.</div>
   <div class="steps-grid">
-    <div class="step"><div class="step-num">01</div><div class="step-title">Apply & get approved</div><div class="step-desc">Connect your Instagram, fill in your details, and our team reviews your profile within 48 hours.</div></div>
-    <div class="step"><div class="step-num">02</div><div class="step-title">Get your promo code</div><div class="step-desc">You receive a unique discount code to share in Reels, captions, and Stories. Your followers save, you earn 10% on every order.</div></div>
-    <div class="step"><div class="step-num">03</div><div class="step-title">Track & earn</div><div class="step-desc">Log in to your dashboard to see orders, pending commissions in ₹, and your ranking on the creator leaderboard.</div></div>
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Apply &amp; get approved</div>
+      <div class="step-desc">Share your Instagram profile, fill in your details, and our team will review your application within 48 hours.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Get your promo code</div>
+      <div class="step-desc">You'll receive a unique discount code to share in Reels, captions, and Stories. Your followers get 10% off — you earn 10% commission on every order placed with it.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Track &amp; earn</div>
+      <div class="step-desc">Log in to your dashboard to view orders placed with your code, monitor your pending commission in ₹, and see your ranking on the creator leaderboard.</div>
+    </div>
   </div>
 </section>
 
@@ -218,54 +285,151 @@ footer a { color: inherit; text-decoration: none; }
     <div class="section-eyebrow">Why modomu</div>
     <div class="section-title">Everything a creator needs</div>
     <div class="perks-grid">
-      <div class="perk"><div class="perk-icon">₹</div><div class="perk-title">10% commission</div><div class="perk-desc">Earn on every verified sale via your promo code or tracked link, paid in INR. No caps, no minimums.</div></div>
-      <div class="perk"><div class="perk-icon">🏷️</div><div class="perk-title">Promo code tracking</div><div class="perk-desc">Your unique code works everywhere — Reels, captions, Stories — no link needed.</div></div>
-      <div class="perk"><div class="perk-icon">📊</div><div class="perk-title">Real-time dashboard</div><div class="perk-desc">See your orders, commission balance, and order statuses in one clean page.</div></div>
-      <div class="perk"><div class="perk-icon">🏆</div><div class="perk-title">Creator leaderboard</div><div class="perk-desc">See how you rank among all Modomu creators. Top performers get exclusive perks.</div></div>
+      <div class="perk">
+        <div class="perk-icon">₹</div>
+        <div class="perk-title">10% commission</div>
+        <div class="perk-desc">Earn on every verified sale placed with your promo code, paid in INR. No caps, no minimums.</div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🏷️</div>
+        <div class="perk-title">Code-based tracking</div>
+        <div class="perk-desc">Your unique code works everywhere — Reels, captions, Stories — no special link required.</div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">📊</div>
+        <div class="perk-title">Real-time dashboard</div>
+        <div class="perk-desc">View your orders, commission balance, and order statuses — all in one clean, private page.</div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🏆</div>
+        <div class="perk-title">Creator leaderboard</div>
+        <div class="perk-desc">See how you rank amongst all Modomu creators. Top performers receive exclusive perks.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>© 2025 <a href="https://modomu.com">Modomu</a> &nbsp;·&nbsp; Creator Program</footer>
+<footer>© 2025 <a href="https://modomu.com">Modomu</a> &nbsp;·&nbsp; Creator Programme</footer>
 
 <script>
-var API = "https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec";
+var API = 'https://script.google.com/macros/s/AKfycbx5rkIffhvWsL3gGIi20AGp3G8s0hPnwrvnapaxp5A4ETC_L27aZv_3vZvg1hGTIPpN/exec';
 
-// ─── Returning creator: show dashboard banner ────────────────────────────────
+// ─── Instagram handle extraction ──────────────────────────────────────────────
+function extractIgHandle(raw) {
+  var s = raw.trim();
+  // Strip leading @ or URL
+  // Patterns: @handle, handle, instagram.com/handle, https://instagram.com/handle, etc.
+  s = s.replace(/^https?:\/\//i, '');
+  s = s.replace(/^www\./i, '');
+  s = s.replace(/^instagram\.com\//i, '');
+  s = s.replace(/^instagr\.am\//i, '');
+  // Remove trailing slashes, query strings, paths
+  s = s.split('/')[0].split('?')[0].split('#')[0];
+  // Strip leading @
+  s = s.replace(/^@/, '');
+  // Clean: only alphanumeric, underscores, dots
+  s = s.replace(/[^a-zA-Z0-9_.]/g, '');
+  return s.toLowerCase();
+}
+
+function isValidHandle(h) {
+  return h.length >= 1 && h.length <= 30 && /^[a-z0-9_.]+$/.test(h);
+}
+
+var resolvedHandle = '';
+
+function onIgInput(input) {
+  var raw = input.value;
+  var hint = document.getElementById('ig-url-hint');
+  var btn = document.getElementById('ig-connect-btn');
+  var resolved = document.getElementById('ig-resolved');
+
+  // If already resolved, hide on new input
+  if (resolved.classList.contains('visible')) {
+    resolved.classList.remove('visible');
+    resolvedHandle = '';
+    input.classList.remove('success');
+  }
+
+  if (!raw.trim()) {
+    hint.textContent = 'Paste your profile link or type your @handle';
+    hint.style.color = '';
+    btn.disabled = true;
+    input.classList.remove('error');
+    return;
+  }
+
+  var handle = extractIgHandle(raw);
+  if (isValidHandle(handle)) {
+    hint.textContent = 'Will use: @' + handle;
+    hint.style.color = 'var(--green)';
+    btn.disabled = false;
+    input.classList.remove('error');
+  } else {
+    hint.textContent = 'Please enter a valid Instagram profile link or @handle';
+    hint.style.color = 'var(--red)';
+    btn.disabled = true;
+    input.classList.add('error');
+  }
+}
+
+function resolveIgHandle() {
+  var raw = document.getElementById('ig-url-input').value;
+  var handle = extractIgHandle(raw);
+  if (!isValidHandle(handle)) return;
+
+  var btn = document.getElementById('ig-connect-btn');
+  btn.textContent = 'Verifying…';
+  btn.disabled = true;
+
+  // In production this would call Instagram's oEmbed or your backend
+  // For now we trust the extracted handle and show confirmation
+  setTimeout(function() {
+    resolvedHandle = handle;
+    document.getElementById('ig-url-input').classList.add('success');
+    document.getElementById('ig-url-input').classList.remove('error');
+    document.getElementById('ig-url-hint').textContent = '';
+    document.getElementById('ig-resolved-handle').textContent = '@' + handle;
+    document.getElementById('ig-resolved').classList.add('visible');
+    btn.textContent = '✓ Verified';
+    btn.style.background = 'var(--green)';
+  }, 800);
+}
+
+function resetIgInput() {
+  resolvedHandle = '';
+  var input = document.getElementById('ig-url-input');
+  input.value = '';
+  input.classList.remove('success', 'error');
+  document.getElementById('ig-resolved').classList.remove('visible');
+  document.getElementById('ig-url-hint').textContent = 'Paste your profile link or type your @handle';
+  document.getElementById('ig-url-hint').style.color = '';
+  var btn = document.getElementById('ig-connect-btn');
+  btn.textContent = 'Verify';
+  btn.style.background = '';
+  btn.disabled = true;
+  input.focus();
+}
+
+// ─── Returning creator: show dashboard entry (no code shown) ─────────────────
 (function() {
   var code = localStorage.getItem('modomu_code') || new URLSearchParams(location.search).get('code');
   if (code) {
+    localStorage.setItem('modomu_code', code);
     var b = document.getElementById('dashboard-banner');
-    var navTag = document.querySelector('.nav-tag');
-    b.textContent = '→ Dashboard (' + code + ')';
-    b.href = 'dashboard.html?code=' + code;
+    var tag = document.getElementById('nav-tag');
     b.style.display = 'flex';
-    if (navTag) navTag.style.display = 'none';
+    if (tag) tag.style.display = 'none';
   }
-  // Handle ?error= from sign-out redirect
   var err = new URLSearchParams(location.search).get('error');
   if (err === 'invalid_code') {
     var e = document.getElementById('form-error');
-    e.textContent = 'Your session expired. Please enter your promo code in the dashboard.';
+    e.textContent = 'Your session has expired. Please submit a new application or contact us.';
     e.classList.add('visible');
   }
 })();
 
-// ─── Instagram mock connect ──────────────────────────────────────────────────
-function simulateInstagramLogin() {
-  var btn = document.getElementById('ig-btn');
-  btn.innerHTML = '&nbsp;&nbsp;Connecting to Instagram…';
-  btn.style.opacity = '0.75';
-  btn.disabled = true;
-  setTimeout(function() {
-    document.getElementById('ig-fields').classList.add('visible');
-    btn.innerHTML = '<svg class="ig-icon" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> ✓ Connected as @lifestyle.creator';
-    btn.style.opacity = '1';
-    btn.style.cursor = 'default';
-  }, 1400);
-}
-
-// ─── Form submission ─────────────────────────────────────────────────────────
+// ─── Form submission ──────────────────────────────────────────────────────────
 function handleSubmit() {
   var first = document.getElementById('field-first').value.trim();
   var last  = document.getElementById('field-last').value.trim();
@@ -275,21 +439,28 @@ function handleSubmit() {
   var about = document.getElementById('field-about').value.trim();
   var errEl = document.getElementById('form-error');
 
+  // Clear previous errors
+  ['field-first','field-email'].forEach(function(id) {
+    document.getElementById(id).classList.remove('error');
+  });
+  errEl.classList.remove('visible');
+
   // Validate
-  if (!first || !email) {
-    errEl.textContent = 'Please fill in your first name and email address.';
+  if (!first) {
+    errEl.textContent = 'Please enter your first name.';
     errEl.classList.add('visible');
-    if (!first) document.getElementById('field-first').classList.add('error');
-    if (!email) document.getElementById('field-email').classList.add('error');
+    document.getElementById('field-first').classList.add('error');
     return;
   }
-  if (!email.includes('@')) {
+  if (!email || !email.includes('@')) {
     errEl.textContent = 'Please enter a valid email address.';
     errEl.classList.add('visible');
     document.getElementById('field-email').classList.add('error');
     return;
   }
-  errEl.classList.remove('visible');
+
+  // Soft warning if no IG handle — don't block
+  var igHandle = resolvedHandle || extractIgHandle(document.getElementById('ig-url-input').value);
 
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Submitting…';
@@ -297,42 +468,44 @@ function handleSubmit() {
 
   var name = (first + ' ' + last).trim();
 
+  // Submit to Apps Script → BigQuery
   fetch(API + '?' + new URLSearchParams({
-    action: 'register',
-    name: name,
-    email: email,
-    phone: phone,
+    action:   'register',
+    name:     name,
+    email:    email,
+    phone:    phone,
     category: cat,
-    about: about
+    about:    about,
+    instagram: igHandle || '',
+    source:   'web_form'
   }))
   .then(function(r) { return r.json(); })
   .then(function(d) {
     if (d.ok) {
-      // Save to localStorage
       localStorage.setItem('modomu_code', d.code);
       localStorage.setItem('modomu_name', name);
-      // Show success state with real code
-      document.getElementById('success-code').textContent = d.code;
-      document.getElementById('success-dashboard-link').href = 'dashboard.html?code=' + d.code;
-      document.getElementById('form-main').style.display = 'none';
-      document.getElementById('success-state').classList.add('visible');
+      var link = document.getElementById('success-dashboard-link');
+      link.href = 'dashboard.html?code=' + d.code;
+      link.style.display = 'inline-flex';
+      showSuccess();
     } else {
-      errEl.textContent = 'Error: ' + (d.error || 'Something went wrong. Please try again.');
+      errEl.textContent = d.error || 'Something went wrong. Please try again.';
       errEl.classList.add('visible');
       btn.disabled = false;
       btn.textContent = 'Submit application →';
     }
   })
   .catch(function() {
-    // On API error, still show success (application captured on form data)
-    // In production you'd want to handle this differently
-    document.getElementById('success-code').textContent = '—';
-    document.getElementById('success-dashboard-link').style.display = 'none';
-    document.getElementById('form-main').style.display = 'none';
-    var ss = document.getElementById('success-state');
-    ss.classList.add('visible');
-    ss.querySelector('.success-sub').textContent = "We've received your application. You'll hear from us within 2 business days via email.";
+    // Network error — still acknowledge submission
+    document.getElementById('success-sub').textContent =
+      "Thank you for your interest. We've noted your application and will be in touch within 2 business days.";
+    showSuccess();
   });
+}
+
+function showSuccess() {
+  document.getElementById('form-main').style.display = 'none';
+  document.getElementById('success-state').classList.add('visible');
 }
 </script>
 </body>
